@@ -73,7 +73,7 @@ function Header() {
       <div className="header-container">
         <div className="header-left">
           <div className="logo">
-            <img src={`${import.meta.env.BASE_URL}zyonify-logo.png`} alt="Zyonify Logo" className="logo-img" />
+            <img src="/zyonify-logo.png" alt="Zyonify Logo" className="logo-img" />
             <span className="logo-text">ZYON'S PORTFOLIO</span>
           </div>
           <nav className="nav">

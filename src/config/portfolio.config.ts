@@ -17,9 +17,9 @@ export const portfolioConfig: PortfolioConfig = {
     email: 'tiangsonzyon@gmail.com',
     phone: '(+63) 968-306-8973',
     birthday: '1996-01-05', // January 5, 1996
-    banner: '/steam-profile-portfolio/profile-background.jpg',
-    resumeUrl: '/steam-profile-portfolio/resume.pdf', // Add your resume PDF to the public folder
-    avatar: '/steam-profile-portfolio/profile-avatar.gif',
+    banner: '/profile-background.jpg',
+    resumeUrl: '/resume.pdf', // Add your resume PDF to the public folder
+    avatar: '/profile-avatar.gif',
   },
 
   // Social Media Links
@@ -57,7 +57,7 @@ export const portfolioConfig: PortfolioConfig = {
       title: 'Professional Scrum Master™ I',
       description: 'Issued by Scrum.org',
       icon: '🏆',
-      logo: '/steam-profile-portfolio/psm1-logo.png',
+      logo: '/psm1-logo.png',
       year: 2023,
       unlocked: true,
     },
@@ -66,7 +66,7 @@ export const portfolioConfig: PortfolioConfig = {
       title: 'Professional Scrum Facilitation Skills™',
       description: 'Issued by Scrum.org',
       icon: '⭐',
-      logo: '/steam-profile-portfolio/psf-logo.png',
+      logo: '/psf-logo.png',
       year: 2024,
       unlocked: true,
     },
