@@ -1,0 +1,184 @@
+.app {
+  min-height: 100vh;
+  background: #000;
+  position: relative;
+  background-position: 49.999% 0;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 1920px) {
+  .app {
+    background-size: auto;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .app {
+    background-position: 49.999% 0;
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  margin-top: 0px;
+  position: relative;
+  padding: 16px;
+  border-radius: 4px;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+body.CosmicTheme .content-wrapper {
+  background:
+    radial-gradient(farthest-side at top right, var(--gradient-right), transparent 500px),
+    radial-gradient(farthest-corner at top left, var(--gradient-left), transparent 600px),
+    radial-gradient(farthest-corner at bottom right, var(--gradient-background-right), transparent 500px),
+    radial-gradient(farthest-corner at bottom left, var(--gradient-background-left), transparent 600px);
+  background-color: var(--gradient-background);
+}
+
+.content-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card styling */
+.card {
+  background: linear-gradient(135deg, rgba(42, 71, 94, 0.4) 0%, rgba(27, 40, 56, 0.4) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  scroll-margin-top: 100px;
+}
+
+.card:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(26, 159, 255, 0.2);
+}
+
+/* Highlight Animation */
+.highlight-pulse {
+  animation: highlightPulse 2s ease-out;
+}
+
+@keyframes highlightPulse {
+  0% {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 30px rgba(26, 159, 255, 0.6), 0 0 60px rgba(26, 159, 255, 0.4);
+    transform: scale(1.02);
+  }
+  50% {
+    border-color: var(--accent-blue-hover);
+    box-shadow: 0 0 40px rgba(26, 159, 255, 0.8), 0 0 80px rgba(26, 159, 255, 0.5);
+  }
+  100% {
+    border-color: var(--border-color);
+    box-shadow: 0 0 15px rgba(26, 159, 255, 0.2);
+    transform: scale(1);
+  }
+}
+
+body.CosmicTheme .highlight-pulse {
+  animation: highlightPulseCosmic 2s ease-out;
+}
+
+@keyframes highlightPulseCosmic {
+  0% {
+    border-color: var(--btn-outline, rgba(140, 90, 142));
+    box-shadow: 0 0 30px rgba(248, 70, 180, 0.6), 0 0 60px rgba(9, 243, 99, 0.4);
+    transform: scale(1.02);
+  }
+  50% {
+    border-color: rgba(248, 180, 220);
+    box-shadow: 0 0 40px rgba(248, 70, 180, 0.8), 0 0 80px rgba(9, 243, 99, 0.5);
+  }
+  100% {
+    border-color: var(--border-color);
+    box-shadow: 0 0 15px rgba(248, 70, 180, 0.2);
+    transform: scale(1);
+  }
+}
+
+.card-header {
+  font-size: 14px;
+  font-weight: 300;
+  color: #c7d5e0;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+  font-family: "Motiva Sans", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Cosmic Theme Card Headers */
+body.CosmicTheme .card-header {
+  background: linear-gradient(
+    to right,
+    var(--gradient-showcase-header-left, rgba(20, 60, 68, 0.93)),
+    var(--color-showcase-header, rgba(57, 24, 61, 0.93))
+  );
+  margin: -20px -20px 15px -20px;
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(140, 90, 142, 0.5);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Responsive design */
+@media (max-width: 968px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .main-content {
+    order: 1;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,93 @@
+.activity-feed {
+  animation: slideIn 0.5s ease-out 0.2s backwards;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.activity-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.3);
+  transition: all 0.3s ease;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item:hover {
+  padding-left: 8px;
+  background: rgba(26, 159, 255, 0.05);
+  margin: 0 -8px;
+  padding-right: 8px;
+  border-radius: 4px;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: rgba(26, 159, 255, 0.15);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.activity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.activity-action {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.activity-target {
+  font-size: 14px;
+  color: var(--accent-blue-hover);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-time {
+  font-size: 11px;
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+.view-all-link {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  margin-top: 10px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  border-top: 1px solid rgba(42, 71, 94, 0.5);
+  transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+  color: var(--accent-blue-hover);
+  background: rgba(26, 159, 255, 0.05);
+}

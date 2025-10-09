@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Steam-inspired color palette */
+  --bg-primary: #1b2838;
+  --bg-secondary: #171a21;
+  --bg-tertiary: #1e2329;
+  --accent-blue: #1a9fff;
+  --accent-blue-hover: #66c0f4;
+  --text-primary: #c7d5e0;
+  --text-secondary: #8f98a0;
+  --border-color: #2a475e;
+  --success: #5c7e10;
+  --highlight: #67c1f5;
+}
+
+body.CosmicTheme {
+  --gradient-right: rgba(248, 70, 180, 0.301);
+  --gradient-left: rgba(9, 243, 99, 0.247);
+  --gradient-background: rgba(46, 13, 36, 0.93);
+  --gradient-background-right: rgba(70, 227, 248, 0);
+  --gradient-background-left: rgba(239, 243, 9, 0.13);
+  --color-showcase-header: rgba(57, 24, 61, 0.93);
+  --gradient-showcase-header-left: rgba(20, 60, 68, 0.93);
+  --btn-background: rgb(90, 40, 92);
+  --btn-background-hover: rgb(100, 50, 102);
+  --btn-outline: rgba(140, 90, 142);
+}
+
+body {
+  font-family: "Motiva Sans", sans-serif;
+  background: #000;
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}

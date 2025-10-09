@@ -1,0 +1,55 @@
+.profile-stats-card {
+  background: linear-gradient(135deg, rgba(42, 71, 94, 0.4) 0%, rgba(27, 40, 56, 0.4) 100%);
+}
+
+.profile-stats-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stat-badge {
+  background: rgba(26, 159, 255, 0.1);
+  border: 1px solid var(--accent-blue);
+  padding: 12px 16px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.stat-badge:hover {
+  background: rgba(26, 159, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 159, 255, 0.3);
+}
+
+.stat-badge-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.stat-badge-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--accent-blue-hover);
+}
+
+/* Cosmic Theme */
+body.CosmicTheme .stat-badge {
+  background: rgba(140, 90, 142, 0.2);
+  border-color: var(--btn-outline, rgba(140, 90, 142));
+}
+
+body.CosmicTheme .stat-badge:hover {
+  background: rgba(140, 90, 142, 0.3);
+  box-shadow: 0 4px 12px rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .stat-badge-value {
+  color: rgba(248, 180, 220);
+}

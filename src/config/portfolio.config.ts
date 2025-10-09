@@ -1,0 +1,187 @@
+import { PortfolioConfig } from '../types'
+
+/**
+ * Portfolio Configuration
+ *
+ * This file contains all your personal information, projects, and settings.
+ * Update this file to customize your portfolio.
+ */
+
+export const portfolioConfig: PortfolioConfig = {
+  // Personal Information
+  personal: {
+    name: 'Victor Zyon Tiangson',
+    title: '.NET Developer | Development Team Lead | Web Developer | Scrum Master',
+    location: 'Quezon City, Philippines',
+    bio: 'Full-stack developer specializing in .NET and React, passionate about building interactive web experiences with modern technologies. Team lead with 8+ years of experience delivering enterprise solutions.',
+    email: 'tiangsonzyon@gmail.com',
+    phone: '(+63) 968-306-8973',
+    birthday: '1996-01-05', // January 5, 1996
+    banner: '/steam-profile-portfolio/profile-background.jpg',
+    resumeUrl: '/steam-profile-portfolio/resume.pdf', // Add your resume PDF to the public folder
+    avatar: '/steam-profile-portfolio/profile-avatar.gif',
+  },
+
+  // Social Media Links
+  social: {
+    github: 'zyonify',
+    linkedin: 'https://www.linkedin.com/in/zyontiangson/',
+    twitter: undefined,
+    website: undefined,
+  },
+
+  // Current Work Status
+  workStatus: {
+    status: 'away', // 'available' | 'employed' | 'away' | 'busy'
+    message: 'Not Looking for Work',
+  },
+
+  // Featured Projects (will be enhanced with GitHub API data)
+  featuredProjects: [
+    {
+      repo: 'birthday-surprise',
+      demoUrl: 'https://birthday-surprise-v1.vercel.app/',
+      featured: true,
+    },
+    {
+      repo: 'key-rush',
+      demoUrl: 'https://key-rush-eight.vercel.app/',
+      featured: true,
+    },
+  ],
+
+  // Achievements & Awards
+  achievements: [
+    {
+      id: 1,
+      title: 'Professional Scrum Master™ I',
+      description: 'Issued by Scrum.org',
+      icon: '🏆',
+      logo: '/steam-profile-portfolio/psm1-logo.png',
+      year: 2023,
+      unlocked: true,
+    },
+    {
+      id: 2,
+      title: 'Professional Scrum Facilitation Skills™',
+      description: 'Issued by Scrum.org',
+      icon: '⭐',
+      logo: '/steam-profile-portfolio/psf-logo.png',
+      year: 2024,
+      unlocked: true,
+    },
+    {
+      id: 3,
+      title: 'Outstanding Thesis Award',
+      description: 'First Place - System Analysis & Design',
+      icon: '🎓',
+      year: 2017,
+      unlocked: true,
+    },
+    {
+      id: 4,
+      title: '8+ Years Experience',
+      description: 'Full-Stack Development',
+      icon: '💻',
+      year: 2017,
+      unlocked: true,
+    },
+    {
+      id: 5,
+      title: 'Team Leadership',
+      description: 'Development Team Lead - Technical',
+      icon: '👥',
+      year: 2025,
+      unlocked: true,
+    },
+    {
+      id: 6,
+      title: 'Civil Service Professional',
+      description: 'Government Certified Professional',
+      icon: '📜',
+      year: 2017,
+      unlocked: true,
+    },
+  ],
+
+  // Technical Skills (from resume)
+  technicalSkills: {
+    'Languages & Frameworks': [
+      'C#', '.NET Framework / .NET 8', 'ASP.NET MVC', 'Web Forms', 'Entity Framework',
+      'LINQ', 'ADO.NET', 'Python', 'JavaScript (ES6+)', 'TypeScript'
+    ],
+    'Front-end & UI': [
+      'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap 5', 'React', 'Blazor',
+      'Three.js', 'React Three Fiber', 'Framer Motion'
+    ],
+    'Database': [
+      'MS SQL Server', 'Supabase', 'Firebase'
+    ],
+    'Tools & Platforms': [
+      'Visual Studio', 'VS Code', 'Git', 'Azure DevOps (TFS)',
+      'SQL Server Management Studio', 'IIS', 'Vercel', 'DocFX', 'Selenium'
+    ],
+    'Practices': [
+      'Agile Scrum', 'CI/CD', 'Code Reviews', 'Software Documentation'
+    ]
+  },
+
+  // Display Settings
+  showTestimonials: false, // Set to true if you add testimonials later
+  showAllRepos: false, // Set to true to display all GitHub repositories
+}
+
+// Helper function to calculate years of experience
+export const getYearsOfExperience = (): number => {
+  const startYear = 2017
+  const currentYear = new Date().getFullYear()
+  return currentYear - startYear
+}
+
+// Helper function to get work status display
+export const getWorkStatusConfig = (status: string) => {
+  const statusConfig = {
+    available: {
+      badge: 'online',
+      text: 'Available for Work',
+      color: '#a4d007',
+    },
+    employed: {
+      badge: 'busy',
+      text: 'Currently Employed',
+      color: '#f39c12',
+    },
+    away: {
+      badge: 'away',
+      text: 'Away',
+      color: '#95a5a6',
+    },
+    busy: {
+      badge: 'busy',
+      text: 'Busy',
+      color: '#e74c3c',
+    },
+  }
+
+  return statusConfig[status as keyof typeof statusConfig] || statusConfig.away
+}
+
+// Helper function to calculate age
+export const getAge = (): number => {
+  if (!portfolioConfig.personal.birthday) return 0
+
+  const birthday = new Date(portfolioConfig.personal.birthday)
+  const today = new Date()
+
+  let age = today.getFullYear() - birthday.getFullYear()
+  const monthDiff = today.getMonth() - birthday.getMonth()
+
+  // Adjust if birthday hasn't occurred yet this year
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthday.getDate())) {
+    age--
+  }
+
+  return age
+}
+
+export default portfolioConfig

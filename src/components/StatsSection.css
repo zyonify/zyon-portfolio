@@ -1,0 +1,164 @@
+.stats-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.5);
+}
+
+.stat-row:last-of-type {
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 16px;
+  color: var(--accent-blue-hover);
+  font-weight: bold;
+}
+
+.completion-section {
+  margin-top: 10px;
+}
+
+.completion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.completion-percentage {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--accent-blue-hover);
+}
+
+.completion-bar {
+  height: 20px;
+  background: rgba(27, 40, 56, 0.8);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.completion-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), #a4d007);
+  border-radius: 10px;
+  transition: width 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.completion-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+.languages-section {
+  margin-top: 10px;
+}
+
+.languages-section .stat-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.languages-bars {
+  display: flex;
+  height: 8px;
+  background: rgba(27, 40, 56, 0.8);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.language-bar {
+  height: 100%;
+}
+
+.language-fill {
+  height: 100%;
+  transition: width 0.8s ease-out;
+}
+
+.languages-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.language-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.language-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.language-name {
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.language-percentage {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.loading-text {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.completion-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+@media (max-width: 968px) {
+  .stats-section {
+    order: -1;
+  }
+}
