@@ -2,6 +2,128 @@
   background: linear-gradient(135deg, rgba(42, 71, 94, 0.4) 0%, rgba(27, 40, 56, 0.4) 100%);
 }
 
+/* Level Section */
+.level-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.level-display {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.level-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.level-ring {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 10px rgba(26, 159, 255, 0.3));
+}
+
+.level-ring-progress {
+  transition: stroke-dashoffset 1s ease-out;
+}
+
+.level-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 42px;
+  font-weight: bold;
+  color: var(--accent-blue-hover);
+  text-shadow: 0 0 20px rgba(26, 159, 255, 0.6);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(26, 159, 255, 0.6), 0 0 30px rgba(26, 159, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(26, 159, 255, 0.8), 0 0 40px rgba(26, 159, 255, 0.6);
+  }
+}
+
+.level-info {
+  flex: 1;
+}
+
+.level-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.level-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* XP Progress Bar */
+.xp-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.xp-bar-container {
+  height: 24px;
+  background: rgba(27, 40, 56, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-blue-hover) 100%);
+  border-radius: 12px;
+  position: relative;
+  transition: width 1s ease-out;
+  box-shadow: 0 0 15px rgba(26, 159, 255, 0.4);
+}
+
+.xp-bar-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.xp-text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Stats Grid */
 .profile-stats-badges {
   display: flex;
   flex-direction: column;
@@ -15,8 +137,25 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(26, 159, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.stat-badge:hover::before {
+  left: 100%;
 }
 
 .stat-badge:hover {
@@ -34,12 +173,43 @@
 }
 
 .stat-badge-value {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   color: var(--accent-blue-hover);
+  line-height: 1;
+}
+
+.stat-badge-xp {
+  font-size: 11px;
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-top: 2px;
 }
 
 /* Cosmic Theme */
+body.CosmicTheme .level-number {
+  color: rgba(248, 180, 220);
+  text-shadow: 0 0 20px rgba(248, 70, 180, 0.6), 0 0 30px rgba(248, 70, 180, 0.4);
+}
+
+@keyframes glowCosmic {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(248, 70, 180, 0.6), 0 0 30px rgba(9, 243, 99, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(248, 70, 180, 0.8), 0 0 40px rgba(9, 243, 99, 0.6);
+  }
+}
+
+body.CosmicTheme .level-number {
+  animation: glowCosmic 2s ease-in-out infinite;
+}
+
+body.CosmicTheme .xp-bar-fill {
+  background: linear-gradient(90deg, rgba(248, 70, 180, 0.8), rgba(9, 243, 99, 0.8));
+  box-shadow: 0 0 15px rgba(248, 70, 180, 0.4);
+}
+
 body.CosmicTheme .stat-badge {
   background: rgba(140, 90, 142, 0.2);
   border-color: var(--btn-outline, rgba(140, 90, 142));
@@ -52,4 +222,29 @@ body.CosmicTheme .stat-badge:hover {
 
 body.CosmicTheme .stat-badge-value {
   color: rgba(248, 180, 220);
+}
+
+body.CosmicTheme .stat-badge-xp {
+  color: rgba(9, 243, 99);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .level-display {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .level-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .level-number {
+    font-size: 36px;
+  }
+
+  .level-title {
+    font-size: 18px;
+  }
 }

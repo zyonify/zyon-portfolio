@@ -26,12 +26,42 @@
   font-size: 13px;
   color: var(--text-secondary);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label svg {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.stat-row:hover .stat-label svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--accent-blue));
 }
 
 .stat-value {
-  font-size: 16px;
+  font-size: 20px;
   color: var(--accent-blue-hover);
   font-weight: bold;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.animated-counter {
+  animation: counterPop 0.3s ease-out;
+}
+
+@keyframes counterPop {
+  0% {
+    transform: scale(1.2);
+    color: var(--accent-blue);
+  }
+  100% {
+    transform: scale(1);
+    color: var(--accent-blue-hover);
+  }
 }
 
 .completion-section {

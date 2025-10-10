@@ -183,29 +183,93 @@
 
 .achievement {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
   padding: 15px;
   background: rgba(27, 40, 56, 0.6);
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
   border-radius: 4px;
   position: relative;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.achievement.unlocked {
-  border-color: var(--accent-blue);
-  background: rgba(26, 159, 255, 0.1);
+/* Rarity-based border colors and glow */
+.achievement.common.unlocked {
+  border-color: #9d9d9d;
+  background: rgba(157, 157, 157, 0.08);
+}
+
+.achievement.rare.unlocked {
+  border-color: #4a9eff;
+  background: rgba(74, 158, 255, 0.08);
+}
+
+.achievement.epic.unlocked {
+  border-color: #a335ee;
+  background: rgba(163, 53, 238, 0.08);
+}
+
+.achievement.legendary.unlocked {
+  border-color: #ff8000;
+  background: rgba(255, 128, 0, 0.08);
+  animation: legendaryGlow 3s ease-in-out infinite;
+}
+
+@keyframes legendaryGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 128, 0, 0.3), 0 6px 16px rgba(255, 128, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 128, 0, 0.5), 0 6px 20px rgba(255, 128, 0, 0.3);
+  }
 }
 
 .achievement.unlocked:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(26, 159, 255, 0.3);
+}
+
+.achievement.common.unlocked:hover {
+  box-shadow: 0 6px 16px rgba(157, 157, 157, 0.3);
+}
+
+.achievement.rare.unlocked:hover {
+  box-shadow: 0 6px 16px rgba(74, 158, 255, 0.4);
+}
+
+.achievement.epic.unlocked:hover {
+  box-shadow: 0 6px 16px rgba(163, 53, 238, 0.4);
+}
+
+.achievement.legendary.unlocked:hover {
+  box-shadow: 0 0 40px rgba(255, 128, 0, 0.6), 0 6px 24px rgba(255, 128, 0, 0.4);
 }
 
 .achievement.locked {
   opacity: 0.5;
   filter: grayscale(1);
+}
+
+/* Animated shine effect for unlocked achievements */
+.achievement.unlocked::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: shine 6s infinite;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(0deg) translate(-100%, -100%);
+  }
+  100% {
+    transform: rotate(0deg) translate(100%, 100%);
+  }
 }
 
 .achievement-icon {
@@ -218,6 +282,28 @@
   background: rgba(26, 159, 255, 0.2);
   border-radius: 4px;
   flex-shrink: 0;
+  border: 1px solid rgba(26, 159, 255, 0.3);
+}
+
+/* Rarity-based icon backgrounds */
+.achievement.common .achievement-icon {
+  background: rgba(157, 157, 157, 0.2);
+  border-color: rgba(157, 157, 157, 0.3);
+}
+
+.achievement.rare .achievement-icon {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: rgba(74, 158, 255, 0.3);
+}
+
+.achievement.epic .achievement-icon {
+  background: rgba(163, 53, 238, 0.2);
+  border-color: rgba(163, 53, 238, 0.3);
+}
+
+.achievement.legendary .achievement-icon {
+  background: rgba(255, 128, 0, 0.2);
+  border-color: rgba(255, 128, 0, 0.3);
 }
 
 .achievement-logo {
@@ -228,32 +314,94 @@
 
 .achievement-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.achievement-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .achievement-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.rarity-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
+  border: 1px solid;
+}
+
+.rarity-badge.common {
+  background: rgba(157, 157, 157, 0.2);
+  color: #c7c7c7;
+  border-color: #9d9d9d;
+}
+
+.rarity-badge.rare {
+  background: rgba(74, 158, 255, 0.2);
+  color: #6eb6ff;
+  border-color: #4a9eff;
+}
+
+.rarity-badge.epic {
+  background: rgba(163, 53, 238, 0.2);
+  color: #c77dff;
+  border-color: #a335ee;
+}
+
+.rarity-badge.legendary {
+  background: rgba(255, 128, 0, 0.2);
+  color: #ffb366;
+  border-color: #ff8000;
+  animation: rarityPulse 2s ease-in-out infinite;
+}
+
+@keyframes rarityPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 128, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(255, 128, 0, 0.6);
+  }
 }
 
 .achievement-description {
   font-size: 12px;
   color: var(--text-secondary);
+  line-height: 1.4;
 }
 
-.achievement-badge {
+.achievement-year {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.achievement-check {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background: var(--success);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+  box-shadow: 0 2px 8px rgba(0, 200, 100, 0.4);
 }
 
 /* Technical Skills Showcase */

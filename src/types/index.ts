@@ -33,6 +33,7 @@ export interface Achievement {
   logo?: string // Optional: path to badge/logo image
   year?: number
   unlocked: boolean
+  rarity?: 'common' | 'rare' | 'epic' | 'legendary' // Achievement rarity level
 }
 
 export interface WorkStatus {

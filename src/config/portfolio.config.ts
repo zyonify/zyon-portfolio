@@ -60,6 +60,7 @@ export const portfolioConfig: PortfolioConfig = {
       logo: '/psm1-logo.png',
       year: 2023,
       unlocked: true,
+      rarity: 'epic',
     },
     {
       id: 2,
@@ -69,6 +70,7 @@ export const portfolioConfig: PortfolioConfig = {
       logo: '/psf-logo.png',
       year: 2024,
       unlocked: true,
+      rarity: 'epic',
     },
     {
       id: 3,
@@ -77,6 +79,7 @@ export const portfolioConfig: PortfolioConfig = {
       icon: '🎓',
       year: 2017,
       unlocked: true,
+      rarity: 'legendary',
     },
     {
       id: 4,
@@ -85,6 +88,7 @@ export const portfolioConfig: PortfolioConfig = {
       icon: '💻',
       year: 2017,
       unlocked: true,
+      rarity: 'rare',
     },
     {
       id: 5,
@@ -93,6 +97,7 @@ export const portfolioConfig: PortfolioConfig = {
       icon: '👥',
       year: 2025,
       unlocked: true,
+      rarity: 'rare',
     },
     {
       id: 6,
@@ -101,6 +106,7 @@ export const portfolioConfig: PortfolioConfig = {
       icon: '📜',
       year: 2017,
       unlocked: true,
+      rarity: 'common',
     },
   ],
 
@@ -118,8 +124,8 @@ export const portfolioConfig: PortfolioConfig = {
       'MS SQL Server', 'Supabase', 'Firebase'
     ],
     'Tools & Platforms': [
-      'Visual Studio', 'VS Code', 'Git', 'Azure DevOps (TFS)',
-      'SQL Server Management Studio', 'IIS', 'Vercel', 'DocFX', 'Selenium'
+      'Visual Studio', 'VS Code', 'Git', 'Azure DevOps',
+      'SQL Server Management Studio', 'IIS', 'Vercel', 'Vite', 'DocFX', 'Selenium'
     ],
     'Practices': [
       'Agile Scrum', 'CI/CD', 'Code Reviews', 'Software Documentation'
