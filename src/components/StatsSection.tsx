@@ -193,7 +193,7 @@ function StatsSection() {
                       style={{ transition: 'stroke-dashoffset 1s ease-out' }}
                     />
                   ]
-                }, [] as JSX.Element[])}
+                }, [] as React.ReactElement[])}
                 <text
                   x="100"
                   y="100"

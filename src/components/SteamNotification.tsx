@@ -10,19 +10,19 @@ function SteamNotification() {
   const [notifications, setNotifications] = useState<ActiveNotification[]>([])
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null
+    let timeoutId: number | null = null
 
     // Function to schedule next notification
     const scheduleNextNotification = () => {
       const randomDelay = Math.random() * 7000 + 5000 // 5-12 seconds
-      timeoutId = setTimeout(() => {
+      timeoutId = window.setTimeout(() => {
         showRandomNotification()
         scheduleNextNotification()
       }, randomDelay)
     }
 
     // Show first notification after 5 seconds, then start scheduling
-    timeoutId = setTimeout(() => {
+    timeoutId = window.setTimeout(() => {
       showRandomNotification()
       scheduleNextNotification()
     }, 5000)

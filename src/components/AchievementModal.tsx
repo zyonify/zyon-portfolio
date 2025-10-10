@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './AchievementModal.css'
-import { VisitorAchievement } from '../types'
 import { getAchievementStats } from '../services/achievementService'
 
 interface AchievementModalProps {
