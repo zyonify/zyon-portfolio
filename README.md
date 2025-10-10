@@ -110,6 +110,7 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 ### APIs & Services
 - **GitHub REST API** - Fetch repos and user data
 - **GitHub GraphQL API** - Contribution graphs and advanced queries
+- **DiceBear Avatars API** - Generate avatar images for Steam notifications
 
 ### Deployment
 - **Vercel** - Optimized for deployment
