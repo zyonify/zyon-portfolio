@@ -1,0 +1,196 @@
+.steam-notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  pointer-events: none;
+}
+
+.steam-notification {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(42, 71, 94, 0.98) 0%, rgba(27, 40, 56, 0.98) 100%);
+  border: 1px solid rgba(26, 159, 255, 0.3);
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: slideInFromRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.steam-notification:hover {
+  transform: translateX(-4px);
+  border-color: rgba(26, 159, 255, 0.6);
+  box-shadow: 0 6px 24px rgba(26, 159, 255, 0.3);
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.steam-notification-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(26, 159, 255, 0.1);
+  border: 1px solid rgba(26, 159, 255, 0.3);
+}
+
+.steam-notification-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.steam-notification-icon-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--accent-blue);
+}
+
+.steam-notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.steam-notification-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.steam-notification-message {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.steam-notification-action {
+  color: var(--accent-blue);
+  font-weight: 500;
+}
+
+.steam-notification-close {
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.steam-notification-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* Different notification types */
+.steam-notification.steam-notification-friend-online {
+  border-left: 3px solid #57cbde;
+}
+
+.steam-notification.steam-notification-playing {
+  border-left: 3px solid #90ba3c;
+}
+
+.steam-notification.steam-notification-invite {
+  border-left: 3px solid #ffc61a;
+}
+
+.steam-notification.steam-notification-achievement {
+  border-left: 3px solid #9355ce;
+}
+
+.steam-notification.steam-notification-trade {
+  border-left: 3px solid #ff6b35;
+}
+
+.steam-notification.steam-notification-message {
+  border-left: 3px solid #26a4ff;
+}
+
+/* Cosmic Theme */
+body.CosmicTheme .steam-notification {
+  background: linear-gradient(135deg, rgba(57, 24, 61, 0.98) 0%, rgba(20, 60, 68, 0.98) 100%);
+  border-color: rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .steam-notification:hover {
+  border-color: rgba(248, 70, 180, 0.6);
+  box-shadow: 0 6px 24px rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .steam-notification-icon {
+  background: rgba(248, 70, 180, 0.1);
+  border-color: rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .steam-notification-icon-placeholder {
+  color: rgba(248, 180, 220);
+}
+
+body.CosmicTheme .steam-notification-action {
+  color: rgba(9, 243, 99);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .steam-notification-container {
+    bottom: 80px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .steam-notification {
+    padding: 10px 12px;
+  }
+
+  .steam-notification-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .steam-notification-title {
+    font-size: 13px;
+  }
+
+  .steam-notification-message {
+    font-size: 11px;
+  }
+}

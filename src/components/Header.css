@@ -140,8 +140,8 @@ body.CosmicTheme .nav-link.active::after {
 
 .achievement-badge-pulse {
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 0px;
+  right: 0px;
   width: 10px;
   height: 10px;
   background: #ffd700;

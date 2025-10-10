@@ -9,6 +9,7 @@ import ActivityFeed from './components/ActivityFeed'
 import SocialSection from './components/SocialSection'
 import AchievementToast from './components/AchievementToast'
 import AchievementModal from './components/AchievementModal'
+import SteamNotification from './components/SteamNotification'
 import { portfolioConfig } from './config/portfolio.config'
 import { initializeAchievementSystem, trackKonamiKey } from './services/achievementService'
 import './styles/App.css'
@@ -40,6 +41,7 @@ function App() {
     <div className="app" style={backgroundStyle}>
       <Header onOpenAchievements={() => setShowAchievementModal(true)} />
       <AchievementToast />
+      <SteamNotification />
       <main className="container">
         <div className="content-wrapper">
           <div className="main-content">

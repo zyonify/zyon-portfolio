@@ -7,6 +7,29 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?style=for-the-badge&logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-6.0-646cff?style=for-the-badge&logo=vite)
 
+## 🆕 Recent Updates
+
+### January 10, 2025
+- **🏆 Visitor Achievement System**: Added Steam-style achievement system with 18 achievements
+  - Real-time toast notifications when achievements are unlocked
+  - Achievement modal with filters (all/unlocked/locked) and progress tracking
+  - 4 rarity tiers: Common, Rare, Epic, Legendary
+  - LocalStorage persistence across sessions
+  - Multiple triggers: exploration, engagement, easter eggs (Konami code!)
+  - Achievement counter badge in header with pulse animation
+- **🔔 Steam Notification System**: Satirical Steam-style friend notifications
+  - Appears in bottom-right corner every 5-12 seconds
+  - 20+ witty notifications from tech celebrities and real friends
+  - Notifications include: "Bill Gates is now online", "Elon Musk is playing Twitter Takeover Simulator", "Roaring Kitty invited you to trade GameStop shares", and more
+  - Click to dismiss or auto-dismiss after 6 seconds
+  - Color-coded borders by notification type (friend online, playing, invite, achievement, trade, message)
+  - Full Cosmic theme support
+- **🎨 Profile UI Improvements**:
+  - Removed redundant action buttons from profile header (moved to dedicated Contact section)
+  - Adjusted profile info positioning to match Steam's layout
+  - Relocated work status badge from header to Developer Level card
+  - Cleaner, more focused profile overview section
+
 ## ✨ Features
 
 ### 🎮 Gamification System
@@ -15,6 +38,12 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
   - Animated XP progress bar with shimmer effects
   - Display XP breakdown for each stat source
   - Glowing level badge with Steam-inspired design
+- **Visitor Achievement System**: Interactive achievement tracking with 18+ achievements
+  - Real-time toast notifications slide in when achievements unlock
+  - Achievement modal with filters and progress tracking
+  - Triggers: section visits, interactions, time-based, easter eggs (Konami code)
+  - LocalStorage persistence - achievements saved across sessions
+  - Achievement badge in header showing unlock progress (e.g., "5/18")
 - **Rarity-Based Achievements**: Color-coded achievement system
   - **Common** (Gray), **Rare** (Blue), **Epic** (Purple), **Legendary** (Orange)
   - Animated shine effects on unlocked achievements
@@ -24,7 +53,12 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 ### 🎨 Steam-Inspired Design
 - **Cosmic Theme**: Beautiful gradient backgrounds with pink, purple, and green glows
 - **Profile Cards**: Steam-style cards with hover effects and animations
-- **Avatar Frame**: Animated flame frame around profile picture with mobile alignment
+- **Avatar Frame**: Steam profile frame around avatar with hover effects
+- **Steam Notifications**: Satirical friend notifications in bottom-right corner
+  - Tech celebrities and friends with witty status updates
+  - "Bill Gates is now online", "Elon Musk is playing Twitter Takeover Simulator"
+  - Color-coded by type (online, playing, invite, achievement, trade, message)
+  - Appears every 5-12 seconds, auto-dismisses or click to close
 - **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
 - **Smooth Animations**: Scroll-triggered animations and transitions throughout
 
@@ -53,15 +87,17 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 - **Resume Viewer**: Built-in PDF viewer with expand/collapse and download
 
 ### 🎯 Key Sections
-1. **Profile Overview**: Name, title, location, and quick actions with animated avatar frame
-2. **Developer Level**: XP-based level system with progress ring and stat breakdown
-3. **Resume Viewer**: Embedded PDF with expand/collapse and download
-4. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
-5. **Achievement Showcase**: Rarity-based certifications and career milestones
-6. **Technical Skills**: Categorized skills with hover animations
-7. **GitHub Stats**: Animated counters, language donut chart, and completion rate
-8. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
-9. **Social Links**: GitHub, LinkedIn, Email contact info
+1. **Profile Overview**: Name, title, location with Steam profile frame
+2. **Developer Level**: XP-based level system with progress ring, stat breakdown, and work status
+3. **Visitor Achievements**: Interactive achievement system with toast notifications and modal
+4. **Resume Viewer**: Embedded PDF with expand/collapse and download
+5. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
+6. **Achievement Showcase**: Rarity-based certifications and career milestones
+7. **Technical Skills**: Categorized skills with hover animations
+8. **GitHub Stats**: Animated counters, language donut chart, and completion rate
+9. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
+10. **Social Links**: GitHub, LinkedIn, Email contact info
+11. **Steam Notifications**: Satirical friend notifications appearing periodically
 
 ## 🛠️ Tech Stack
 

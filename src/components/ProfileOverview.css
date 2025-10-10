@@ -6,7 +6,7 @@
 
 .profile-content {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   gap: 30px;
   padding: 30px;
   align-items: start;
@@ -53,16 +53,10 @@
   background: url('https://shared.fastly.steamstatic.com/community_assets/images/items/322330/984f18d4bcc76669bcbd8971f962d1b75716dd11.png') center/contain no-repeat;
   pointer-events: none;
   transition: all 0.3s ease;
-  animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(26, 159, 255, 0.4));
-  }
-  50% {
-    filter: drop-shadow(0 0 30px rgba(26, 159, 255, 0.6));
-  }
+.profile-center {
+  padding-top: 8px;
 }
 
 .profile-name {
@@ -96,77 +90,6 @@
   font-weight: 300;
 }
 
-.profile-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 0;
-  min-width: 180px;
-}
-
-.profile-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 12px 24px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  white-space: nowrap;
-}
-
-.profile-btn.primary {
-  background: var(--accent-blue);
-  color: white;
-  border-color: var(--accent-blue);
-}
-
-.profile-btn.primary:hover {
-  background: var(--accent-blue-hover);
-  border-color: var(--accent-blue-hover);
-  box-shadow: 0 0 15px rgba(26, 159, 255, 0.4);
-}
-
-.profile-btn.secondary {
-  background: transparent;
-  color: var(--accent-blue);
-  border-color: var(--accent-blue);
-}
-
-.profile-btn.secondary:hover {
-  background: rgba(26, 159, 255, 0.1);
-  border-color: var(--accent-blue-hover);
-  color: var(--accent-blue-hover);
-}
-
-/* Cosmic Theme Buttons */
-body.CosmicTheme .profile-btn.primary {
-  background: var(--btn-background, rgb(90, 40, 92));
-  border-color: var(--btn-outline, rgba(140, 90, 142));
-}
-
-body.CosmicTheme .profile-btn.primary:hover {
-  background: var(--btn-background-hover, rgb(100, 50, 102));
-  border-color: var(--btn-outline, rgba(140, 90, 142));
-  box-shadow: 0 0 15px rgba(248, 70, 180, 0.4);
-}
-
-body.CosmicTheme .profile-btn.secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border-color: var(--btn-outline, rgba(140, 90, 142));
-}
-
-body.CosmicTheme .profile-btn.secondary:hover {
-  background: rgba(90, 40, 92, 0.3);
-  border-color: var(--btn-outline, rgba(140, 90, 142));
-  box-shadow: 0 0 10px rgba(248, 70, 180, 0.3);
-}
-
 @media (max-width: 968px) {
   .profile-content {
     grid-template-columns: 1fr;
@@ -179,16 +102,7 @@ body.CosmicTheme .profile-btn.secondary:hover {
 
   .profile-center {
     text-align: center;
-  }
-
-  .profile-badges {
-    justify-content: center;
-  }
-
-  .profile-actions {
-    margin-top: 0;
-    flex-direction: row;
-    justify-content: center;
+    padding-top: 0;
   }
 }
 
@@ -198,20 +112,18 @@ body.CosmicTheme .profile-btn.secondary:hover {
     height: 120px;
   }
 
+  .avatar-frame {
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+  }
+
   .profile-name {
     font-size: 24px;
   }
 
   .profile-content {
     padding: 20px;
-  }
-
-  .profile-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .profile-btn {
-    width: 100%;
   }
 }
