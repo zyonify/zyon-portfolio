@@ -110,6 +110,59 @@ export const portfolioConfig: PortfolioConfig = {
     },
   ],
 
+  // Personal Hobbies & Interests
+  hobbies: [
+    {
+      id: 1,
+      title: 'Marathon Running',
+      description: 'Passionate about long-distance running and pushing physical limits',
+      icon: '🏃',
+    },
+    {
+      id: 2,
+      title: 'Perfume Collecting',
+      description: 'Curating a diverse collection of unique fragrances',
+      icon: '🌸',
+    },
+    {
+      id: 3,
+      title: 'Casual Gamer',
+      description: 'currently playing hollow knight silksong -- digimon story: time stranger is next on my backlog',
+      icon: '🎮',
+      status: 'Currently Active',
+    },
+    {
+      id: 4,
+      title: 'Creative Maker',
+      description: 'Creating stuff on a whim - always experimenting with new ideas',
+      icon: '✨',
+    },
+    {
+      id: 5,
+      title: 'Melbourne Zoo Explorer',
+      description: 'Love travelling to Melbourne, Australia and exploring the amazing zoos',
+      icon: '🦘',
+    },
+    {
+      id: 6,
+      title: 'Whiskey Sour Enthusiast',
+      description: 'Appreciating the perfect balance of bourbon, lemon, and sugar',
+      icon: '🥃',
+    },
+    {
+      id: 7,
+      title: 'Ointment Collector',
+      description: 'Katinko, White Flower, and Poi Sian enthusiast',
+      icon: '💊',
+    },
+    {
+      id: 8,
+      title: 'Adobo Lover',
+      description: 'Love all things adobo - all variants welcome',
+      icon: '🍲',
+    },
+  ],
+
   // Technical Skills (from resume)
   technicalSkills: {
     'Languages & Frameworks': [

@@ -404,6 +404,151 @@
   box-shadow: 0 2px 8px rgba(0, 200, 100, 0.4);
 }
 
+/* Personal Hobbies Showcase */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.hobby-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(27, 40, 56, 0.6) 0%, rgba(27, 40, 56, 0.4) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.hobby-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    var(--accent-blue) 0%,
+    transparent 50%,
+    var(--accent-blue) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hobby-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 6px 20px rgba(26, 159, 255, 0.3);
+  background: linear-gradient(135deg, rgba(27, 40, 56, 0.8) 0%, rgba(27, 40, 56, 0.6) 100%);
+}
+
+.hobby-card:hover::before {
+  opacity: 1;
+}
+
+.hobby-icon {
+  font-size: 40px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(26, 159, 255, 0.2), rgba(26, 159, 255, 0.1));
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 1px solid rgba(26, 159, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hobby-card:hover .hobby-icon {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, rgba(26, 159, 255, 0.3), rgba(26, 159, 255, 0.15));
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 15px rgba(26, 159, 255, 0.4);
+}
+
+.hobby-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hobby-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hobby-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.hobby-status {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--success) 0%, #a4d007 100%);
+  color: white;
+  box-shadow: 0 0 10px rgba(164, 208, 7, 0.4);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(164, 208, 7, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(164, 208, 7, 0.6);
+  }
+}
+
+.hobby-description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Cosmic Theme Hobbies */
+body.CosmicTheme .hobby-card {
+  background: linear-gradient(135deg, rgba(57, 24, 61, 0.5) 0%, rgba(57, 24, 61, 0.3) 100%);
+}
+
+body.CosmicTheme .hobby-card:hover {
+  background: linear-gradient(135deg, rgba(57, 24, 61, 0.7) 0%, rgba(57, 24, 61, 0.5) 100%);
+  border-color: rgba(248, 180, 220);
+  box-shadow: 0 6px 20px rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .hobby-card::before {
+  background: linear-gradient(90deg,
+    rgba(248, 70, 180) 0%,
+    transparent 50%,
+    rgba(248, 70, 180) 100%);
+}
+
+body.CosmicTheme .hobby-icon {
+  background: linear-gradient(135deg, rgba(248, 70, 180, 0.2), rgba(248, 70, 180, 0.1));
+  border-color: rgba(248, 70, 180, 0.3);
+}
+
+body.CosmicTheme .hobby-card:hover .hobby-icon {
+  background: linear-gradient(135deg, rgba(248, 70, 180, 0.3), rgba(248, 70, 180, 0.15));
+  border-color: rgba(248, 70, 180);
+  box-shadow: 0 0 15px rgba(248, 70, 180, 0.4);
+}
+
 /* Technical Skills Showcase */
 .skills-showcase {
   display: flex;
@@ -473,6 +618,10 @@ body.CosmicTheme .skill-tag:hover {
   }
 
   .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hobbies-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -36,6 +36,14 @@ export interface Achievement {
   rarity?: 'common' | 'rare' | 'epic' | 'legendary' // Achievement rarity level
 }
 
+export interface Hobby {
+  id: number
+  title: string
+  description: string
+  icon: string
+  status?: string // Optional: "Currently Active" or other status text
+}
+
 export interface WorkStatus {
   status: 'available' | 'employed' | 'away' | 'busy'
   message: string
@@ -47,6 +55,7 @@ export interface PortfolioConfig {
   workStatus: WorkStatus
   featuredProjects: FeaturedProject[]
   achievements: Achievement[]
+  hobbies: Hobby[]
   technicalSkills: { [category: string]: string[] }
   showTestimonials: boolean
   showAllRepos: boolean

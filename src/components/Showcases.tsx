@@ -134,6 +134,27 @@ function Showcases() {
         </div>
       </section>
 
+      {/* Personal Hobbies */}
+      <section className="showcase-card card hobbies-showcase">
+        <div className="card-header">Personal Hobbies & Interests</div>
+        <div className="hobbies-grid">
+          {portfolioConfig.hobbies.map(hobby => (
+            <div key={hobby.id} className="hobby-card">
+              <div className="hobby-icon">{hobby.icon}</div>
+              <div className="hobby-content">
+                <div className="hobby-header">
+                  <h4 className="hobby-title">{hobby.title}</h4>
+                  {hobby.status && (
+                    <span className="hobby-status">{hobby.status}</span>
+                  )}
+                </div>
+                <p className="hobby-description">{hobby.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Technical Skills */}
       <section id="skills" className="showcase-card card tech-stack">
         <div className="card-header">Technical Skills</div>
