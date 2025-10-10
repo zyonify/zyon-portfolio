@@ -59,7 +59,6 @@ body.CosmicTheme .content-wrapper {
 
 .content-wrapper > * {
   position: relative;
-  z-index: 1;
 }
 
 .main-content {

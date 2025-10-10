@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './ResumeViewer.css'
 import { portfolioConfig } from '../config/portfolio.config'
+import { unlockAchievement } from '../services/achievementService'
 
 function ResumeViewer() {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -8,6 +9,13 @@ function ResumeViewer() {
 
   if (!resumeUrl) {
     return null
+  }
+
+  const handleExpandToggle = () => {
+    if (!isExpanded) {
+      unlockAchievement('detail-oriented')
+    }
+    setIsExpanded(!isExpanded)
   }
 
   return (
@@ -29,7 +37,7 @@ function ResumeViewer() {
               Download
             </a>
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={handleExpandToggle}
               className="resume-btn expand-btn"
               title={isExpanded ? 'Collapse' : 'Expand'}
             >

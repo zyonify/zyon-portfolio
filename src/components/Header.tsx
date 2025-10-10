@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
 import './Header.css'
-import { portfolioConfig, getWorkStatusConfig } from '../config/portfolio.config'
+import { getAchievementStats, onAchievementUnlock, trackLogoClick } from '../services/achievementService'
 
-function Header() {
-  const statusConfig = getWorkStatusConfig(portfolioConfig.workStatus.status)
+interface HeaderProps {
+  onOpenAchievements: () => void
+}
+
+function Header({ onOpenAchievements }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('profile')
+  const [achievementStats, setAchievementStats] = useState(getAchievementStats())
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault()
@@ -30,6 +34,15 @@ function Header() {
       }, 2000)
     }
   }
+
+  // Update achievement stats when achievements are unlocked
+  useEffect(() => {
+    const unsubscribe = onAchievementUnlock(() => {
+      setAchievementStats(getAchievementStats())
+    })
+
+    return unsubscribe
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,11 +81,15 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleLogoClick = () => {
+    trackLogoClick()
+  }
+
   return (
     <header className="header">
       <div className="header-container">
         <div className="header-left">
-          <div className="logo">
+          <div className="logo" onClick={handleLogoClick}>
             <img src="/zyonify-logo.png" alt="Zyonify Logo" className="logo-img" />
             <span className="logo-text">ZYON'S PORTFOLIO</span>
           </div>
@@ -108,10 +125,19 @@ function Header() {
           </nav>
         </div>
         <div className="header-right">
-          <div className={`status-badge ${statusConfig.badge}`} style={{ borderColor: statusConfig.color }}>
-            <span className="status-dot" style={{ background: statusConfig.color, boxShadow: `0 0 8px ${statusConfig.color}` }}></span>
-            {portfolioConfig.workStatus.message}
-          </div>
+          <button
+            className="achievement-badge-btn"
+            onClick={onOpenAchievements}
+            title="View Achievements"
+          >
+            <span className="achievement-icon">🏆</span>
+            <span className="achievement-count">
+              {achievementStats.unlockedCount}/{achievementStats.totalCount}
+            </span>
+            {achievementStats.unlockedCount > 0 && achievementStats.unlockedCount < achievementStats.totalCount && (
+              <span className="achievement-badge-pulse"></span>
+            )}
+          </button>
         </div>
       </div>
     </header>

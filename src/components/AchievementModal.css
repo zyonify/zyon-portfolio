@@ -1,0 +1,403 @@
+.achievement-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.achievement-modal {
+  background: linear-gradient(135deg, rgba(27, 40, 56, 0.98) 0%, rgba(20, 30, 42, 0.98) 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+  animation: slideUp 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  margin: auto 0;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  padding: 24px;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.modal-close {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.modal-filters {
+  padding: 16px 24px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.5);
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  background: rgba(27, 40, 56, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(26, 159, 255, 0.15);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue-hover);
+}
+
+.filter-btn.active {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: white;
+}
+
+.modal-progress {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.5);
+}
+
+.progress-bar {
+  height: 24px;
+  background: rgba(27, 40, 56, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success) 0%, #a4d007 100%);
+  border-radius: 12px;
+  transition: width 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.modal-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.rarity-group {
+  margin-bottom: 32px;
+}
+
+.rarity-group:last-child {
+  margin-bottom: 0;
+}
+
+.rarity-title {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+
+.rarity-title.common {
+  color: #c7c7c7;
+  border-color: #9d9d9d;
+}
+
+.rarity-title.rare {
+  color: #6eb6ff;
+  border-color: #4a9eff;
+}
+
+.rarity-title.epic {
+  color: #c77dff;
+  border-color: #a335ee;
+}
+
+.rarity-title.legendary {
+  color: #ffb366;
+  border-color: #ff8000;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.achievement-card {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  background: rgba(27, 40, 56, 0.4);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.achievement-card.unlocked {
+  background: rgba(27, 40, 56, 0.6);
+}
+
+.achievement-card.unlocked.common {
+  border-color: #9d9d9d;
+}
+
+.achievement-card.unlocked.rare {
+  border-color: #4a9eff;
+}
+
+.achievement-card.unlocked.epic {
+  border-color: #a335ee;
+}
+
+.achievement-card.unlocked.legendary {
+  border-color: #ff8000;
+}
+
+.achievement-card.unlocked:hover {
+  transform: translateY(-2px);
+}
+
+.achievement-card.unlocked.common:hover {
+  box-shadow: 0 4px 12px rgba(157, 157, 157, 0.3);
+}
+
+.achievement-card.unlocked.rare:hover {
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+}
+
+.achievement-card.unlocked.epic:hover {
+  box-shadow: 0 4px 12px rgba(163, 53, 238, 0.4);
+}
+
+.achievement-card.unlocked.legendary:hover {
+  box-shadow: 0 4px 16px rgba(255, 128, 0, 0.6);
+}
+
+.achievement-card.locked {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.achievement-card-icon {
+  font-size: 36px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 159, 255, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(26, 159, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.achievement-card.unlocked.rare .achievement-card-icon {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: rgba(74, 158, 255, 0.4);
+}
+
+.achievement-card.unlocked.epic .achievement-card-icon {
+  background: rgba(163, 53, 238, 0.2);
+  border-color: rgba(163, 53, 238, 0.4);
+}
+
+.achievement-card.unlocked.legendary .achievement-card-icon {
+  background: rgba(255, 128, 0, 0.2);
+  border-color: rgba(255, 128, 0, 0.4);
+}
+
+.achievement-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.achievement-card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.achievement-card-xp {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  white-space: nowrap;
+}
+
+.achievement-card-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+
+.achievement-card-date {
+  font-size: 10px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.achievement-card-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background: var(--success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 200, 100, 0.4);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .achievement-modal {
+    max-height: 90vh;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .modal-title {
+    font-size: 20px;
+  }
+
+  .modal-subtitle {
+    font-size: 12px;
+  }
+
+  .modal-filters {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+
+  .modal-progress {
+    padding: 12px 20px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

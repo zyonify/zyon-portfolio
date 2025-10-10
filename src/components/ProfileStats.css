@@ -69,7 +69,40 @@
 .level-subtitle {
   font-size: 13px;
   color: var(--text-secondary);
-  margin: 0;
+  margin: 0 0 8px 0;
+}
+
+.work-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(92, 126, 16, 0.2);
+  border: 1px solid var(--success);
+  color: #a4d007;
+  margin-top: 4px;
+}
+
+.work-status-badge .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a4d007;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 8px #a4d007;
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 4px #a4d007;
+  }
 }
 
 /* XP Progress Bar */
@@ -235,6 +268,12 @@ body.CosmicTheme .stat-badge-xp {
     text-align: center;
   }
 
+  .level-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .level-circle {
     width: 100px;
     height: 100px;
@@ -246,5 +285,10 @@ body.CosmicTheme .stat-badge-xp {
 
   .level-title {
     font-size: 18px;
+  }
+
+  .work-status-badge {
+    font-size: 11px;
+    padding: 5px 10px;
   }
 }

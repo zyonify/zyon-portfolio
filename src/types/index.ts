@@ -44,6 +44,19 @@ export interface Hobby {
   status?: string // Optional: "Currently Active" or other status text
 }
 
+export interface VisitorAchievement {
+  id: string
+  title: string
+  description: string
+  icon: string
+  unlocked: boolean
+  unlockedAt?: number // timestamp
+  trigger: 'auto' | 'scroll' | 'click' | 'time' | 'easter-egg'
+  triggerCondition?: string // specific condition for trigger
+  rarity?: 'common' | 'rare' | 'epic' | 'legendary'
+  xp?: number // XP reward for unlocking
+}
+
 export interface WorkStatus {
   status: 'available' | 'employed' | 'away' | 'busy'
   message: string

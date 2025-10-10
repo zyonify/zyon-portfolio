@@ -1,0 +1,270 @@
+.achievement-toast-container {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.achievement-toast {
+  background: linear-gradient(135deg, rgba(27, 40, 56, 0.98) 0%, rgba(20, 30, 42, 0.98) 100%);
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+  animation: slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  overflow: hidden;
+  pointer-events: all;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.achievement-toast:hover {
+  transform: translateX(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.9);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Rarity borders and glows */
+.achievement-toast.common {
+  border-color: #9d9d9d;
+}
+
+.achievement-toast.rare {
+  border-color: #4a9eff;
+  box-shadow: 0 8px 32px rgba(74, 158, 255, 0.4), 0 0 0 1px rgba(74, 158, 255, 0.2);
+}
+
+.achievement-toast.epic {
+  border-color: #a335ee;
+  box-shadow: 0 8px 32px rgba(163, 53, 238, 0.4), 0 0 0 1px rgba(163, 53, 238, 0.2);
+}
+
+.achievement-toast.legendary {
+  border-color: #ff8000;
+  box-shadow: 0 8px 32px rgba(255, 128, 0, 0.6), 0 0 0 1px rgba(255, 128, 0, 0.3);
+  animation: slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), legendaryGlowPulse 2s ease-in-out infinite;
+}
+
+@keyframes legendaryGlowPulse {
+  0%, 100% {
+    box-shadow: 0 8px 32px rgba(255, 128, 0, 0.6), 0 0 20px rgba(255, 128, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(255, 128, 0, 0.8), 0 0 30px rgba(255, 128, 0, 0.6);
+  }
+}
+
+.toast-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 1.5s ease-in-out;
+}
+
+@keyframes shine {
+  to {
+    left: 100%;
+  }
+}
+
+.toast-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.toast-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--success);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.toast-xp {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.toast-content {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.toast-icon {
+  font-size: 40px;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 159, 255, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(26, 159, 255, 0.3);
+  flex-shrink: 0;
+  animation: iconPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s backwards;
+}
+
+@keyframes iconPop {
+  0% {
+    transform: scale(0);
+    rotate: -180deg;
+  }
+  100% {
+    transform: scale(1);
+    rotate: 0deg;
+  }
+}
+
+.achievement-toast.rare .toast-icon {
+  background: rgba(74, 158, 255, 0.2);
+  border-color: rgba(74, 158, 255, 0.4);
+}
+
+.achievement-toast.epic .toast-icon {
+  background: rgba(163, 53, 238, 0.2);
+  border-color: rgba(163, 53, 238, 0.4);
+}
+
+.achievement-toast.legendary .toast-icon {
+  background: rgba(255, 128, 0, 0.2);
+  border-color: rgba(255, 128, 0, 0.4);
+}
+
+.toast-info {
+  flex: 1;
+}
+
+.toast-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.toast-description {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.toast-progress-bar {
+  height: 100%;
+  background: var(--success);
+  animation: progressFill 5s linear;
+}
+
+.achievement-toast.rare .toast-progress-bar {
+  background: #4a9eff;
+}
+
+.achievement-toast.epic .toast-progress-bar {
+  background: #a335ee;
+}
+
+.achievement-toast.legendary .toast-progress-bar {
+  background: #ff8000;
+}
+
+@keyframes progressFill {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.toast-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+.achievement-toast:hover .toast-close {
+  opacity: 1;
+}
+
+.toast-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .achievement-toast-container {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+    top: 70px;
+  }
+
+  .achievement-toast {
+    padding: 12px;
+  }
+
+  .toast-icon {
+    font-size: 32px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .toast-title {
+    font-size: 14px;
+  }
+
+  .toast-description {
+    font-size: 12px;
+  }
+}

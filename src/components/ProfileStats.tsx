@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './ProfileStats.css'
-import { getYearsOfExperience } from '../config/portfolio.config'
+import { getYearsOfExperience, portfolioConfig, getWorkStatusConfig } from '../config/portfolio.config'
 import { fetchUserProfile, getStats } from '../services/github'
 
 // Calculate developer level based on GitHub stats
@@ -23,6 +23,7 @@ function ProfileStats() {
   const [stars, setStars] = useState<number>(0)
   const [loading, setLoading] = useState(true)
   const yearsOfExperience = getYearsOfExperience()
+  const statusConfig = getWorkStatusConfig(portfolioConfig.workStatus.status)
 
   const stats = { repos, followers, stars, years: yearsOfExperience }
   const { level, currentLevelXP, nextLevelXP, progress } = calculateLevel(stats)
@@ -94,6 +95,10 @@ function ProfileStats() {
           <div className="level-info">
             <h3 className="level-title">Level {loading ? '...' : level} Developer</h3>
             <p className="level-subtitle">{yearsOfExperience}+ Years Experience</p>
+            <div className="work-status-badge" style={{ borderColor: statusConfig.color }}>
+              <span className="status-dot" style={{ background: statusConfig.color, boxShadow: `0 0 8px ${statusConfig.color}` }}></span>
+              {portfolioConfig.workStatus.message}
+            </div>
           </div>
         </div>
 

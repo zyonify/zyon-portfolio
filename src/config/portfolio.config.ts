@@ -114,7 +114,7 @@ export const portfolioConfig: PortfolioConfig = {
   hobbies: [
     {
       id: 1,
-      title: 'Marathon Running',
+      title: 'Running',
       description: 'Passionate about long-distance running and pushing physical limits',
       icon: '🏃',
     },
@@ -127,7 +127,7 @@ export const portfolioConfig: PortfolioConfig = {
     {
       id: 3,
       title: 'Casual Gamer',
-      description: 'currently playing hollow knight silksong -- digimon story: time stranger is next on my backlog',
+      description: 'Currently playing Hollow Knight: Silksong -- Digimon Story: Time Stranger is next on my backlog',
       icon: '🎮',
       status: 'Currently Active',
     },
@@ -158,7 +158,7 @@ export const portfolioConfig: PortfolioConfig = {
     {
       id: 8,
       title: 'Adobo Lover',
-      description: 'Love all things adobo - all variants welcome',
+      description: 'Love all things adobo -- all variants welcome',
       icon: '🍲',
     },
   ],

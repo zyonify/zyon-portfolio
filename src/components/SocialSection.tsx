@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './SocialSection.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { fetchUserProfile } from '../services/github'
+import { unlockAchievement, trackSectionVisit } from '../services/achievementService'
 
 function SocialSection() {
   const [followers, setFollowers] = useState<number>(0)
@@ -24,6 +25,38 @@ function SocialSection() {
 
     loadFollowers()
   }, [])
+
+  // Track section visit with Intersection Observer
+  useEffect(() => {
+    const contactSection = document.getElementById('contact')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            trackSectionVisit('contact')
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (contactSection) observer.observe(contactSection)
+
+    return () => {
+      if (contactSection) observer.unobserve(contactSection)
+    }
+  }, [])
+
+  const handleSocialClick = (linkName: string) => {
+    if (linkName === 'GitHub') {
+      unlockAchievement('star-gazer')
+    } else if (linkName === 'LinkedIn') {
+      unlockAchievement('socially-active')
+    } else if (linkName === 'Email') {
+      unlockAchievement('contact-initiator')
+    }
+  }
 
   const socialLinks = [
     {
@@ -70,6 +103,7 @@ function SocialSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={link.name}
+                onClick={() => handleSocialClick(link.name)}
               >
                 {link.icon === 'github' && (
                   <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">

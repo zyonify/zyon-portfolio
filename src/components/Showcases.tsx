@@ -3,6 +3,7 @@ import './Showcases.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { getFeaturedProject } from '../services/github'
 import { ProcessedProject } from '../types'
+import { unlockAchievement, trackAchievementHover, trackSectionVisit } from '../services/achievementService'
 
 function Showcases() {
   const [featuredProjects, setFeaturedProjects] = useState<ProcessedProject[]>([])
@@ -26,6 +27,40 @@ function Showcases() {
     }
 
     loadFeaturedProjects()
+  }, [])
+
+  // Track section visits with Intersection Observer
+  useEffect(() => {
+    const projectsSection = document.getElementById('projects')
+    const achievementsSection = document.querySelector('.achievements-showcase')
+    const hobbiesSection = document.querySelector('.hobbies-showcase')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (entry.target.id === 'projects') {
+              trackSectionVisit('projects')
+            } else if (entry.target.classList.contains('achievements-showcase')) {
+              trackSectionVisit('achievements')
+            } else if (entry.target.classList.contains('hobbies-showcase')) {
+              trackSectionVisit('hobbies')
+            }
+          }
+        })
+      },
+      { threshold: 0.3 }
+    )
+
+    if (projectsSection) observer.observe(projectsSection)
+    if (achievementsSection) observer.observe(achievementsSection)
+    if (hobbiesSection) observer.observe(hobbiesSection)
+
+    return () => {
+      if (projectsSection) observer.unobserve(projectsSection)
+      if (achievementsSection) observer.unobserve(achievementsSection)
+      if (hobbiesSection) observer.unobserve(hobbiesSection)
+    }
   }, [])
 
   return (
@@ -100,6 +135,7 @@ function Showcases() {
               key={achievement.id}
               className={`achievement ${achievement.unlocked ? 'unlocked' : 'locked'} ${achievement.rarity || 'common'}`}
               data-rarity={achievement.rarity || 'common'}
+              onMouseEnter={() => trackAchievementHover(achievement.id.toString())}
             >
               <div className="achievement-icon">
                 {achievement.logo ? (
@@ -139,7 +175,15 @@ function Showcases() {
         <div className="card-header">Personal Hobbies & Interests</div>
         <div className="hobbies-grid">
           {portfolioConfig.hobbies.map(hobby => (
-            <div key={hobby.id} className="hobby-card">
+            <div
+              key={hobby.id}
+              className="hobby-card"
+              onClick={() => {
+                if (hobby.id === 3) {
+                  unlockAchievement('fellow-gamer')
+                }
+              }}
+            >
               <div className="hobby-icon">{hobby.icon}</div>
               <div className="hobby-content">
                 <div className="hobby-header">

@@ -100,36 +100,76 @@ body.CosmicTheme .nav-link.active::after {
   background: var(--btn-outline, rgba(140, 90, 142));
 }
 
-.status-badge {
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.achievement-badge-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
+  background: rgba(26, 159, 255, 0.15);
+  border: 1px solid var(--accent-blue);
   border-radius: 4px;
+  color: var(--accent-blue-hover);
   font-size: 13px;
   font-weight: 500;
-  background: rgba(92, 126, 16, 0.2);
-  border: 1px solid var(--success);
-  color: #a4d007;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
+.achievement-badge-btn:hover {
+  background: rgba(26, 159, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 159, 255, 0.3);
+}
+
+.achievement-icon {
+  font-size: 14px;
+}
+
+.achievement-count {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.achievement-badge-pulse {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: #ffd700;
   border-radius: 50%;
-  background: #a4d007;
-  animation: pulse 2s infinite;
+  border: 2px solid rgba(27, 40, 56, 0.95);
+  animation: badgePulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
+@keyframes badgePulse {
   0%, 100% {
-    opacity: 1;
-    box-shadow: 0 0 8px #a4d007;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+    transform: scale(1);
   }
   50% {
-    opacity: 0.6;
-    box-shadow: 0 0 4px #a4d007;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+    transform: scale(1.1);
   }
+}
+
+body.CosmicTheme .achievement-badge-btn {
+  background: rgba(248, 70, 180, 0.15);
+  border-color: rgba(248, 70, 180);
+  color: rgba(248, 180, 220);
+}
+
+body.CosmicTheme .achievement-badge-btn:hover {
+  background: rgba(248, 70, 180, 0.25);
+  box-shadow: 0 4px 12px rgba(248, 70, 180, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -145,6 +185,10 @@ body.CosmicTheme .nav-link.active::after {
     width: 100%;
   }
 
+  .header-right {
+    gap: 10px;
+  }
+
   .nav {
     gap: 15px;
     flex-wrap: wrap;
@@ -157,5 +201,14 @@ body.CosmicTheme .nav-link.active::after {
 
   .nav-link {
     font-size: 12px;
+  }
+
+  .achievement-badge-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .achievement-icon {
+    font-size: 14px;
   }
 }
