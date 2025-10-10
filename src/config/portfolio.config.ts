@@ -27,7 +27,8 @@ export const portfolioConfig: PortfolioConfig = {
     github: 'zyonify',
     linkedin: 'https://www.linkedin.com/in/zyontiangson/',
     twitter: undefined,
-    website: undefined,
+      website: undefined,
+      strava: 'https://www.strava.com/athletes/129898926',
   },
 
   // Current Work Status

@@ -16,7 +16,8 @@ export interface SocialLinks {
   github: string
   linkedin?: string
   twitter?: string
-  website?: string
+    website?: string
+    strava?: string
 }
 
 export interface FeaturedProject {
