@@ -46,7 +46,8 @@
 
 .avatar-frame {
   position: absolute;
-  inset: -30px;
+  top: -30px;
+  left: -30px;
   width: calc(100% + 60px);
   height: calc(100% + 60px);
   background: url('https://shared.fastly.steamstatic.com/community_assets/images/items/322330/984f18d4bcc76669bcbd8971f962d1b75716dd11.png') center/contain no-repeat;
