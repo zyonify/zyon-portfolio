@@ -156,9 +156,72 @@ function StatsSection() {
 
           <div className="languages-section">
             <div className="stat-label">Top Languages</div>
+
+            {/* Donut Chart */}
+            <div className="language-chart">
+              <svg viewBox="0 0 200 200" className="donut-chart">
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="80"
+                  fill="none"
+                  stroke="rgba(27, 40, 56, 0.8)"
+                  strokeWidth="30"
+                />
+                {stats.languages.reduce((acc, lang, index) => {
+                  const previousPercentages = stats.languages
+                    .slice(0, index)
+                    .reduce((sum, l) => sum + l.percentage, 0)
+                  const circumference = 2 * Math.PI * 80
+                  const offset = circumference - (previousPercentages / 100) * circumference
+                  const dashArray = `${(lang.percentage / 100) * circumference} ${circumference}`
+
+                  return [
+                    ...acc,
+                    <circle
+                      key={lang.name}
+                      cx="100"
+                      cy="100"
+                      r="80"
+                      fill="none"
+                      stroke={lang.color}
+                      strokeWidth="30"
+                      strokeDasharray={dashArray}
+                      strokeDashoffset={-offset}
+                      transform="rotate(-90 100 100)"
+                      className="language-segment"
+                      style={{ transition: 'stroke-dashoffset 1s ease-out' }}
+                    />
+                  ]
+                }, [] as JSX.Element[])}
+                <text
+                  x="100"
+                  y="100"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="chart-center-text"
+                  fontSize="14"
+                  fill="var(--text-secondary)"
+                >
+                  {stats.languages.length}
+                </text>
+                <text
+                  x="100"
+                  y="115"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="chart-center-label"
+                  fontSize="10"
+                  fill="var(--text-secondary)"
+                >
+                  languages
+                </text>
+              </svg>
+            </div>
+
             <div className="languages-bars">
               {stats.languages.map(lang => (
-                <div key={lang.name} className="language-bar">
+                <div key={lang.name} className="language-bar" title={`${lang.name}: ${lang.percentage}%`}>
                   <div
                     className="language-fill"
                     style={{
