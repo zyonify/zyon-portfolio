@@ -9,11 +9,24 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ## ✨ Features
 
+### 🎮 Gamification System
+- **Developer Level System**: XP-based progression with circular progress ring
+  - Calculate level from GitHub stats (repos × 100 + followers × 50 + stars × 10 + years × 500)
+  - Animated XP progress bar with shimmer effects
+  - Display XP breakdown for each stat source
+  - Glowing level badge with Steam-inspired design
+- **Rarity-Based Achievements**: Color-coded achievement system
+  - **Common** (Gray), **Rare** (Blue), **Epic** (Purple), **Legendary** (Orange)
+  - Animated shine effects on unlocked achievements
+  - Legendary achievements have pulsing glow animations
+  - Year badges showing when achievements were earned
+
 ### 🎨 Steam-Inspired Design
 - **Cosmic Theme**: Beautiful gradient backgrounds with pink, purple, and green glows
 - **Profile Cards**: Steam-style cards with hover effects and animations
-- **Avatar Frame**: Animated flame frame around profile picture
+- **Avatar Frame**: Animated flame frame around profile picture with mobile alignment
 - **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
+- **Smooth Animations**: Scroll-triggered animations and transitions throughout
 
 ### 🚀 Interactive Navigation
 - **Smooth Scrolling**: Click navigation links to smoothly scroll to sections
@@ -21,22 +34,33 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 - **Pulse Animations**: Sections glow when navigated to
 - **Mobile-First**: Profile card appears at the top on mobile devices
 
-### 📊 Dynamic Content
+### 📊 Dynamic Content & Visualizations
 - **GitHub Integration**: Automatically fetches repos, stats, and profile data
+- **Animated Counters**: Stats count up when scrolling into view with smooth easing
+- **Contribution Heatmap**: GitHub-style activity visualization
+  - Last 12 weeks of activity
+  - 5-level intensity colors
+  - Hover tooltips showing contribution counts
+  - Responsive grid layout with day labels
+- **Language Breakdown Donut Chart**: Visual representation of tech stack
+  - Interactive circular chart with hover effects
+  - Shows language count in center
+  - Color-coded segments matching language colors
+  - Complements horizontal bar visualization
 - **Featured Projects**: Showcase your best work with live demos
-- **Achievement Showcase**: Display your certifications and milestones
-- **Technical Skills**: Organized by category with Steam-style tags
-- **Resume Viewer**: Built-in PDF viewer with download option
+- **Achievement Showcase**: Display your certifications and milestones with rarity tiers
+- **Technical Skills**: Organized by category with Steam-style interactive tags
+- **Resume Viewer**: Built-in PDF viewer with expand/collapse and download
 
 ### 🎯 Key Sections
-1. **Profile Overview**: Name, title, location, and quick actions
-2. **Resume Viewer**: Embedded PDF with expand/collapse and download
-3. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
-4. **Achievement Showcase**: Certifications and career milestones
-5. **Technical Skills**: Categorized skills in Steam showcase style
-6. **Profile Stats**: Level, experience, and project count
-7. **GitHub Stats**: Contributions, streak, and language breakdown
-8. **Activity Feed**: Recent GitHub activity
+1. **Profile Overview**: Name, title, location, and quick actions with animated avatar frame
+2. **Developer Level**: XP-based level system with progress ring and stat breakdown
+3. **Resume Viewer**: Embedded PDF with expand/collapse and download
+4. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
+5. **Achievement Showcase**: Rarity-based certifications and career milestones
+6. **Technical Skills**: Categorized skills with hover animations
+7. **GitHub Stats**: Animated counters, language donut chart, and completion rate
+8. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
 9. **Social Links**: GitHub, LinkedIn, Email contact info
 
 ## 🛠️ Tech Stack
@@ -160,8 +184,10 @@ export const portfolioConfig = {
       title: 'Your Achievement',
       description: 'Description',
       icon: '🏆',
+      logo: '/your-badge-logo.png', // Optional: path to badge image
       year: 2024,
       unlocked: true,
+      rarity: 'legendary', // 'common' | 'rare' | 'epic' | 'legendary'
     },
   ],
 
@@ -184,6 +210,44 @@ body.CosmicTheme {
 ```
 
 ## 🎨 Features Showcase
+
+### 🏆 Developer Level System
+The gamification system calculates your developer level based on GitHub activity:
+- **Repositories**: 100 XP each
+- **Followers**: 50 XP each
+- **Stars**: 10 XP each
+- **Years of Experience**: 500 XP per year
+
+Level up every 2000 XP! The circular progress ring shows your progress to the next level with smooth animations and glowing effects.
+
+### 🎯 Achievement Rarity Tiers
+Achievements are color-coded by rarity:
+- **Common**: Gray - Basic achievements and certifications
+- **Rare**: Blue - Notable accomplishments
+- **Epic**: Purple - Significant milestones and advanced certifications
+- **Legendary**: Orange - Top-tier achievements with pulsing glow effect
+
+Each tier has unique visual effects including borders, backgrounds, and animations.
+
+### 📊 Data Visualizations
+
+#### Contribution Heatmap
+- GitHub-style grid showing last 12 weeks of activity
+- 5 intensity levels from light to bright blue
+- Hover to see exact contribution counts
+- Automatically generated from your recent GitHub events
+
+#### Language Breakdown Chart
+- Interactive donut chart showing your top programming languages
+- Color-coded segments matching each language's official color
+- Hover effects that brighten and enlarge segments
+- Displays total language count in the center
+
+#### Animated Stat Counters
+- Numbers count up smoothly when scrolling into view
+- Smooth easing animations (ease-out cubic)
+- Icons with hover glow effects
+- Triggered by Intersection Observer for performance
 
 ### Navigation System
 - Smooth scroll with offset for sticky header
