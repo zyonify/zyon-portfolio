@@ -18,7 +18,7 @@ function Header({ onOpenAchievements }: HeaderProps) {
 
     const section = document.getElementById(sectionId)
     if (section) {
-      const headerOffset = 80
+      const headerOffset = 100
       const elementPosition = section.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset
 
