@@ -38,8 +38,13 @@ function ProfileStats() {
   const statusConfig = getWorkStatusConfig(portfolioConfig.workStatus.status)
 
   const stats = { repos, followers, stars, years: yearsOfExperience }
-  const { level, currentLevelXP, nextLevelXP, progress } = calculateLevel(stats)
+  const { level, currentLevelXP, nextLevelXP, progress, totalXP } = calculateLevel(stats)
   const levelStyle = getLevelBorderStyle(level)
+
+  // Debug logging
+  useEffect(() => {
+    console.log('📊 Level Stats Debug:', { repos, followers, stars, years: yearsOfExperience, totalXP, level })
+  }, [repos, followers, stars, yearsOfExperience, totalXP, level])
 
   useEffect(() => {
     const loadGitHubData = async () => {

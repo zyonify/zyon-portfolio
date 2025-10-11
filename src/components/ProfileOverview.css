@@ -15,6 +15,12 @@
   z-index: 1;
 }
 
+.profile-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .avatar-container {
   position: relative;
   cursor: pointer;
@@ -94,15 +100,24 @@
   .profile-content {
     grid-template-columns: 1fr;
     gap: 20px;
+    justify-items: center;
+  }
+
+  .profile-left {
+    width: 100%;
+    justify-content: center;
   }
 
   .avatar-container {
     justify-self: center;
+    margin: 0 auto;
+    display: block;
   }
 
   .profile-center {
     text-align: center;
     padding-top: 0;
+    width: 100%;
   }
 }
 

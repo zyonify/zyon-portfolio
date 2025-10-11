@@ -90,7 +90,7 @@ function Header({ onOpenAchievements }: HeaderProps) {
       <div className="header-container">
         <div className="header-left">
           <div className="logo" onClick={handleLogoClick}>
-            <img src="/zyonify-logo.png" alt="Zyonify Logo" className="logo-img" />
+            <img src="/zyon-z-logo.png" alt="Zyonify Logo" className="logo-img" />
             <span className="logo-text">ZYON'S PORTFOLIO</span>
           </div>
           <nav className="nav">
