@@ -5,10 +5,11 @@ import { fetchUserProfile, getStats } from '../services/github'
 import { calculateXPFromSources, calculateLevelFromXP } from '../utils/steamXP'
 import { getLevelBorderStyle } from '../utils/steamLevelColors'
 import { useLanguage } from '../contexts/LanguageContext'
+import { getAchievementStats, onAchievementUnlock } from '../services/achievementService'
 
-// Calculate developer level based on GitHub stats using Steam-like XP system
-function calculateLevel(stats: { repos: number; followers: number; stars: number; years: number }) {
-  // Calculate total XP from all sources
+// Calculate developer level based on GitHub stats + achievements using Steam-like XP system
+function calculateLevel(stats: { repos: number; followers: number; stars: number; years: number; achievementsXP?: number }) {
+  // Calculate total XP from all sources including achievements
   const totalXP = calculateXPFromSources(stats)
 
   // Use Steam-like leveling system
@@ -34,12 +35,13 @@ function ProfileStats() {
   const [repos, setRepos] = useState<number>(0)
   const [followers, setFollowers] = useState<number>(0)
   const [stars, setStars] = useState<number>(0)
+  const [achievementsXP, setAchievementsXP] = useState<number>(0)
   const [loading, setLoading] = useState(true)
   const yearsOfExperience = getYearsOfExperience()
   const statusConfig = getWorkStatusConfig(portfolioConfig.workStatus.status)
   const { t } = useLanguage()
 
-  const stats = { repos, followers, stars, years: yearsOfExperience }
+  const stats = { repos, followers, stars, years: yearsOfExperience, achievementsXP }
   const { level, currentLevelXP, nextLevelXP, progress } = calculateLevel(stats)
   const levelStyle = getLevelBorderStyle(level)
 
@@ -65,6 +67,21 @@ function ProfileStats() {
     }
 
     loadGitHubData()
+  }, [])
+
+  // Load achievement XP and listen for unlocks
+  useEffect(() => {
+    // Load initial achievement XP
+    const achievementStats = getAchievementStats()
+    setAchievementsXP(achievementStats.totalXP)
+
+    // Listen for new achievement unlocks
+    const unsubscribe = onAchievementUnlock(() => {
+      const updatedStats = getAchievementStats()
+      setAchievementsXP(updatedStats.totalXP)
+    })
+
+    return unsubscribe
   }, [])
 
   // CSS custom properties for dynamic level styling
@@ -164,6 +181,11 @@ function ProfileStats() {
           <span className="stat-badge-label">{t.yearsOfExperience}</span>
           <span className="stat-badge-value">{yearsOfExperience}+</span>
           <span className="stat-badge-xp">+{(yearsOfExperience * 500).toLocaleString()} XP</span>
+        </div>
+        <div className="stat-badge achievements-badge">
+          <span className="stat-badge-label">{t.achievements}</span>
+          <span className="stat-badge-value">{achievementsXP > 0 ? `${getAchievementStats().unlockedCount}/${getAchievementStats().totalCount}` : '0/18'}</span>
+          <span className="stat-badge-xp">+{achievementsXP.toLocaleString()} XP</span>
         </div>
       </div>
     </div>

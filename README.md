@@ -9,6 +9,18 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ## 🆕 Recent Updates
 
+### October 13, 2025
+- **🏆 Achievement XP Integration**: Achievements now contribute to developer level
+  - Unlocking achievements adds XP to your level progress bar (10-200 XP per achievement)
+  - Real-time XP bar updates when achievements unlock
+  - New "Achievements" stat badge showing unlock count and total XP earned
+  - Achievement XP fully integrated into level calculation system
+  - Up to 1,000+ bonus XP available from all 18 achievements
+- **📝 Documentation Updates**: Enhanced portfolio documentation
+  - Updated Info Modal with achievement XP information
+  - Added translation reporting feature with GitHub issue templates
+  - Improved example calculations to include achievement XP
+
 ### October 12, 2025
 - **🌐 Multi-Language System**: Added comprehensive language switching feature
   - 6 languages available: English, Sarcasm, Binary, Emoji Only, Lorem Ipsum, and Young Stunnah (Filipino Gen Z slang)
@@ -27,9 +39,10 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
   - Main header: Logo with translated title, navigation links
   - User dropdown menu with Steam-like styling (account details, wallet, language submenu, sign out)
   - Language submenu appears on hover with smooth transitions
+  - Translation problem reporting via GitHub issues
 - **ℹ️ Info Modal**: Behind-the-scenes portfolio information
   - Explains XP system, level tiers, achievement mechanics, and hidden features
-  - Tabbed interface: Level Tiers, Achievements, XP Sources, Easter Eggs
+  - Tabbed interface: Level Tiers, Achievements, XP Sources, Notifications
   - Unified styling with Achievement Modal for consistency
 
 ### October 10, 2025
@@ -72,9 +85,12 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ### 🎮 Gamification System
 - **Developer Level System**: XP-based progression with circular progress ring
-  - Calculate level from GitHub stats (repos × 100 + followers × 50 + stars × 10 + years × 500)
+  - Calculate level from GitHub stats + achievements (repos × 100 + followers × 50 + stars × 10 + years × 500 + achievements)
+  - Achievement XP ranges from 10-200 XP per achievement (up to 1,000+ total bonus XP)
+  - Real-time XP bar updates when achievements are unlocked
   - Animated XP progress bar with shimmer effects
-  - Display XP breakdown for each stat source
+  - Display XP breakdown for each stat source including achievements
+  - 5 stat badges: Repositories, Followers, Stars, Years, and Achievements
   - Glowing level badge with Steam-inspired design
 - **Visitor Achievement System**: Interactive achievement tracking with 18+ achievements
   - Real-time toast notifications slide in when achievements unlock
@@ -82,11 +98,13 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
   - Triggers: section visits, interactions, time-based, easter eggs (Konami code)
   - LocalStorage persistence - achievements saved across sessions
   - Achievement badge in header showing unlock progress (e.g., "5/18")
+  - **NEW**: Achievement XP contributes to developer level progression
 - **Rarity-Based Achievements**: Color-coded achievement system
-  - **Common** (Gray), **Rare** (Blue), **Epic** (Purple), **Legendary** (Orange)
+  - **Common** (Gray, 10-25 XP), **Rare** (Blue, 30-45 XP), **Epic** (Purple, 50-75 XP), **Legendary** (Orange, 100-200 XP)
   - Animated shine effects on unlocked achievements
   - Legendary achievements have pulsing glow animations
   - Year badges showing when achievements were earned
+  - XP values displayed on each achievement card
 
 ### 🎨 Steam-Inspired Design
 - **Cosmic Theme**: Beautiful gradient backgrounds with pink, purple, and green glows
@@ -127,8 +145,8 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 ### 🎯 Key Sections
 1. **Header Navigation**: Two-tier Steam-style header with language selector, info button, and achievements
 2. **Profile Overview**: Name, title, location with Steam profile frame
-3. **Developer Level**: XP-based level system with progress ring, stat breakdown, and work status
-4. **Visitor Achievements**: Interactive achievement system with toast notifications and modal
+3. **Developer Level**: XP-based level system with progress ring, 5 stat badges (GitHub + Achievements), and work status
+4. **Visitor Achievements**: Interactive achievement system with toast notifications, modal, and XP rewards
 5. **Resume Viewer**: Embedded PDF with expand/collapse and download
 6. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
 7. **Achievement Showcase**: Rarity-based certifications and career milestones
@@ -138,7 +156,7 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 11. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
 12. **Social Links**: GitHub, LinkedIn, Email contact info
 13. **Steam Notifications**: Satirical friend notifications appearing periodically
-14. **Info Modal**: Behind-the-scenes details about portfolio mechanics and features
+14. **Info Modal**: Behind-the-scenes details about portfolio mechanics, XP system, and features
 
 ## 🛠️ Tech Stack
 
@@ -334,13 +352,18 @@ Switch between 6 different languages for a completely different experience:
 5. Your choice is saved automatically for future visits
 
 ### 🏆 Developer Level System
-The gamification system calculates your developer level based on GitHub activity:
+The gamification system calculates your developer level based on GitHub activity and visitor achievements:
 - **Repositories**: 100 XP each
 - **Followers**: 50 XP each
 - **Stars**: 10 XP each
 - **Years of Experience**: 500 XP per year
+- **Achievements**: Variable XP (10-200 per achievement)
+  - Common achievements: 10-25 XP
+  - Rare achievements: 30-45 XP
+  - Epic achievements: 50-75 XP
+  - Legendary achievements: 100-200 XP
 
-Level up every 2000 XP! The circular progress ring shows your progress to the next level with smooth animations and glowing effects.
+Level up using a Steam-like bracket system! The circular progress ring shows your progress to the next level with smooth animations and glowing effects. Unlock achievements to boost your XP and level up faster!
 
 ### 🎯 Achievement Rarity Tiers
 Achievements are color-coded by rarity:

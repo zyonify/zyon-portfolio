@@ -161,7 +161,17 @@ function InfoModal({ isOpen, onClose }: InfoModalProps) {
                       <div className="xp-source-value">+500 XP each</div>
                     </div>
                   </div>
+                  <div className="xp-source-item">
+                    <span className="xp-source-icon">🏆</span>
+                    <div className="xp-source-details">
+                      <div className="xp-source-name">Achievements</div>
+                      <div className="xp-source-value">Variable XP (10-200)</div>
+                    </div>
+                  </div>
                 </div>
+                <p className="xp-note">
+                  💡 <strong>New!</strong> Unlocking visitor achievements now contributes to your level. The XP bar updates in real-time when you unlock achievements!
+                </p>
               </div>
 
               <div className="xp-progression">
@@ -182,10 +192,10 @@ function InfoModal({ isOpen, onClose }: InfoModalProps) {
                 <h4>Example Calculation</h4>
                 <div className="xp-example">
                   <div className="xp-example-input">
-                    20 repos (2,000 XP) + 50 followers (2,500 XP) + 100 stars (1,000 XP) + 3 years (1,500 XP)
+                    20 repos (2,000 XP) + 50 followers (2,500 XP) + 100 stars (1,000 XP) + 3 years (1,500 XP) + 5 achievements (150 XP)
                   </div>
                   <div className="xp-example-result">
-                    = <strong>7,000 Total XP</strong> → Approximately Level 16
+                    = <strong>7,150 Total XP</strong> → Approximately Level 16
                   </div>
                 </div>
               </div>

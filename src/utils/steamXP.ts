@@ -102,11 +102,13 @@ export function calculateXPFromSources(sources: {
   followers: number   // Community engagement - 50 XP each
   stars: number       // Achievements/Recognition - 10 XP each
   years: number       // Account anniversary - 500 XP per year
+  achievementsXP?: number  // Visitor achievements - variable XP
 }): number {
   return (
     sources.repos * 100 +      // Each repo = 1 game badge
     sources.followers * 50 +   // Community engagement
     sources.stars * 10 +       // Stars as achievements
-    sources.years * 500        // Years of experience (account age)
+    sources.years * 500 +      // Years of experience (account age)
+    (sources.achievementsXP || 0)  // Visitor achievements
   )
 }

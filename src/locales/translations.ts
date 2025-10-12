@@ -15,6 +15,7 @@ export interface Translations {
   repositories: string
   followers: string
   totalStars: string
+  achievements: string
 
   // Sections
   recentActivity: string
@@ -56,6 +57,7 @@ export const translations: Record<Language, Translations> = {
     repositories: 'Repositories',
     followers: 'Followers',
     totalStars: 'Total Stars',
+    achievements: 'Achievements',
 
     recentActivity: 'Recent Activity',
     contributions: 'contributions in last 12 weeks',
@@ -92,6 +94,7 @@ export const translations: Record<Language, Translations> = {
     repositories: 'Code Dumps',
     followers: 'Stalkers',
     totalStars: 'Pity Stars',
+    achievements: 'Participation Trophies',
 
     recentActivity: 'Recent Excuses',
     contributions: 'attempts at productivity',
@@ -128,6 +131,7 @@ export const translations: Record<Language, Translations> = {
     repositories: '01010010 01100101 01110000',
     followers: '01000110 01101111 01101100',
     totalStars: '01010011 01110100 01100001',
+    achievements: '01000001 01100011 01101000',
 
     recentActivity: '01000001 01100011 01110100',
     contributions: '01100011 01101111 01101110 01110100',
@@ -164,6 +168,7 @@ export const translations: Record<Language, Translations> = {
     repositories: '📦',
     followers: '👥',
     totalStars: '⭐',
+    achievements: '🏆',
 
     recentActivity: '⚡ 📋',
     contributions: '🎯',
@@ -200,6 +205,7 @@ export const translations: Record<Language, Translations> = {
     repositories: 'Sed Do Eiusmod',
     followers: 'Tempor Incididunt',
     totalStars: 'Ut Labore',
+    achievements: 'Dolore Magna',
 
     recentActivity: 'Magna Aliqua',
     contributions: 'dolor sit amet',
@@ -236,6 +242,7 @@ export const translations: Record<Language, Translations> = {
     repositories: 'Code Sesh',
     followers: 'Tropa',
     totalStars: 'Solid Stars',
+    achievements: 'Flex Badges',
 
     recentActivity: 'Latest Gawa',
     contributions: 'lodi moves',
