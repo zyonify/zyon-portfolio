@@ -4,6 +4,7 @@ import { getYearsOfExperience, portfolioConfig, getWorkStatusConfig } from '../c
 import { fetchUserProfile, getStats } from '../services/github'
 import { calculateXPFromSources, calculateLevelFromXP } from '../utils/steamXP'
 import { getLevelBorderStyle } from '../utils/steamLevelColors'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Calculate developer level based on GitHub stats using Steam-like XP system
 function calculateLevel(stats: { repos: number; followers: number; stars: number; years: number }) {
@@ -36,15 +37,11 @@ function ProfileStats() {
   const [loading, setLoading] = useState(true)
   const yearsOfExperience = getYearsOfExperience()
   const statusConfig = getWorkStatusConfig(portfolioConfig.workStatus.status)
+  const { t } = useLanguage()
 
   const stats = { repos, followers, stars, years: yearsOfExperience }
   const { level, currentLevelXP, nextLevelXP, progress, totalXP } = calculateLevel(stats)
   const levelStyle = getLevelBorderStyle(level)
-
-  // Debug logging
-  useEffect(() => {
-    console.log('📊 Level Stats Debug:', { repos, followers, stars, years: yearsOfExperience, totalXP, level })
-  }, [repos, followers, stars, yearsOfExperience, totalXP, level])
 
   useEffect(() => {
     const loadGitHubData = async () => {
@@ -82,7 +79,7 @@ function ProfileStats() {
 
   return (
     <div className="profile-stats-card card" style={levelCSSVars}>
-      <div className="card-header">Developer Level</div>
+      <div className="card-header">{t.developerLevel}</div>
 
       {/* Level Badge */}
       <div className="level-section">
@@ -124,8 +121,8 @@ function ProfileStats() {
             </div>
           </div>
           <div className="level-info">
-            <h3 className="level-title">Level {loading ? '...' : level} Developer</h3>
-            <p className="level-subtitle">{yearsOfExperience}+ Years of Experience</p>
+            <h3 className="level-title">{t.level} {loading ? '...' : level} {t.developer}</h3>
+            <p className="level-subtitle">{yearsOfExperience}+ {t.yearsOfExperience}</p>
             <div className="work-status-badge" style={{ borderColor: statusConfig.color }}>
               <span className="status-dot" style={{ background: statusConfig.color, boxShadow: `0 0 8px ${statusConfig.color}` }}></span>
               {portfolioConfig.workStatus.message}
@@ -141,7 +138,7 @@ function ProfileStats() {
             </div>
           </div>
           <div className="xp-text">
-            {loading ? 'Loading...' : `${currentLevelXP.toLocaleString()} / ${nextLevelXP.toLocaleString()} XP`}
+            {loading ? t.loading : `${currentLevelXP.toLocaleString()} / ${nextLevelXP.toLocaleString()} XP`}
           </div>
         </div>
       </div>
@@ -149,22 +146,22 @@ function ProfileStats() {
       {/* Stats Grid */}
       <div className="profile-stats-badges">
         <div className="stat-badge projects-badge">
-          <span className="stat-badge-label">Repositories</span>
+          <span className="stat-badge-label">{t.repositories}</span>
           <span className="stat-badge-value">{loading ? '...' : repos}</span>
           <span className="stat-badge-xp">+{(repos * 100).toLocaleString()} XP</span>
         </div>
         <div className="stat-badge followers-badge">
-          <span className="stat-badge-label">Followers</span>
+          <span className="stat-badge-label">{t.followers}</span>
           <span className="stat-badge-value">{loading ? '...' : followers}</span>
           <span className="stat-badge-xp">+{(followers * 50).toLocaleString()} XP</span>
         </div>
         <div className="stat-badge stars-badge">
-          <span className="stat-badge-label">Total Stars</span>
+          <span className="stat-badge-label">{t.totalStars}</span>
           <span className="stat-badge-value">{loading ? '...' : stars}</span>
           <span className="stat-badge-xp">+{(stars * 10).toLocaleString()} XP</span>
         </div>
         <div className="stat-badge experience-badge">
-          <span className="stat-badge-label">Years of Experience</span>
+          <span className="stat-badge-label">{t.yearsOfExperience}</span>
           <span className="stat-badge-value">{yearsOfExperience}+</span>
           <span className="stat-badge-xp">+{(yearsOfExperience * 500).toLocaleString()} XP</span>
         </div>

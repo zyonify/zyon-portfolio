@@ -4,10 +4,12 @@ import { portfolioConfig } from '../config/portfolio.config'
 import { getFeaturedProject } from '../services/github'
 import { ProcessedProject } from '../types'
 import { unlockAchievement, trackAchievementHover, trackSectionVisit } from '../services/achievementService'
+import { useLanguage } from '../contexts/LanguageContext'
 
 function Showcases() {
   const [featuredProjects, setFeaturedProjects] = useState<ProcessedProject[]>([])
   const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadFeaturedProjects = async () => {
@@ -67,10 +69,10 @@ function Showcases() {
     <div className="showcases">
       {/* Featured Projects */}
       <section id="projects" className="showcase-card card featured-projects-section">
-        <div className="card-header">Featured Projects</div>
+        <div className="card-header">{t.featuredProjects}</div>
         {loading ? (
           <div className="featured-projects-grid loading">
-            <p className="loading-text">Loading featured projects...</p>
+            <p className="loading-text">{t.loading}</p>
           </div>
         ) : featuredProjects.length > 0 ? (
           <div className="featured-projects-grid">
@@ -128,7 +130,7 @@ function Showcases() {
 
       {/* Achievements Showcase */}
       <section className="showcase-card card achievements-showcase">
-        <div className="card-header">Achievement Showcase</div>
+        <div className="card-header">{t.achievementShowcase}</div>
         <div className="achievements-grid">
           {portfolioConfig.achievements.slice(0, 6).map(achievement => (
             <div
@@ -172,7 +174,7 @@ function Showcases() {
 
       {/* Personal Hobbies */}
       <section className="showcase-card card hobbies-showcase">
-        <div className="card-header">Personal Hobbies & Interests</div>
+        <div className="card-header">{t.personalHobbies}</div>
         <div className="hobbies-grid">
           {portfolioConfig.hobbies.map(hobby => (
             <div
@@ -201,7 +203,7 @@ function Showcases() {
 
       {/* Technical Skills */}
       <section id="skills" className="showcase-card card tech-stack">
-        <div className="card-header">Technical Skills</div>
+        <div className="card-header">{t.technicalSkills}</div>
         <div className="skills-showcase">
           {Object.entries(portfolioConfig.technicalSkills).map(([category, skills]) => (
             <div key={category} className="skill-category">

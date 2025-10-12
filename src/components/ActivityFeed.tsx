@@ -3,6 +3,7 @@ import './ActivityFeed.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { getProcessedActivity } from '../services/github'
 import { ProcessedActivity } from '../types'
+import { useLanguage } from '../contexts/LanguageContext'
 
 // Generate activity heatmap data for last 12 weeks
 function generateActivityHeatmap(activities: ProcessedActivity[]) {
@@ -43,6 +44,8 @@ function generateActivityHeatmap(activities: ProcessedActivity[]) {
 function ActivityFeed() {
   const [activities, setActivities] = useState<ProcessedActivity[]>([])
   const [loading, setLoading] = useState(true)
+  const weeks = 12
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadActivity = async () => {
@@ -66,10 +69,10 @@ function ActivityFeed() {
 
   return (
     <section className="card activity-feed">
-      <div className="card-header">Recent Activity</div>
+      <div className="card-header">{t.recentActivity}</div>
       {loading ? (
         <div className="activity-list">
-          <p className="loading-text">Loading activity...</p>
+          <p className="loading-text">{t.loading}</p>
         </div>
       ) : activities.length > 0 ? (
         <>
@@ -77,14 +80,21 @@ function ActivityFeed() {
           <div className="contribution-heatmap">
             <div className="heatmap-header">
               <span className="heatmap-title">
-                {totalContributions} contributions in last 12 weeks
+                {totalContributions} {t.contributions}
               </span>
+              <div className="heatmap-legend">
+                <span className="legend-label">{t.less}</span>
+                {[0, 1, 2, 3, 4].map(level => (
+                  <div key={level} className={`legend-box intensity-${level}`} title={level === 0 ? 'No contributions' : `${level} contribution level`} />
+                ))}
+                <span className="legend-label">{t.more}</span>
+              </div>
             </div>
             <div className="heatmap-grid">
               <div className="heatmap-labels">
-                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day, i) => (
-                  <div key={day} className="heatmap-day-label">
-                    {i % 2 === 0 ? day[0] : ''}
+                {['Mon', 'Wed', 'Fri'].map((day, i) => (
+                  <div key={day} className="heatmap-day-label" style={{ gridRow: [2, 4, 6][i] }}>
+                    {day}
                   </div>
                 ))}
               </div>
@@ -93,24 +103,23 @@ function ActivityFeed() {
                   <div key={weekIndex} className="heatmap-week">
                     {week.map((count, dayIndex) => {
                       const intensity = count === 0 ? 0 : Math.ceil((count / maxActivity) * 4)
+                      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+                      const dateOffset = (weeks * 7) - (weekIndex * 7) - dayIndex
+                      const date = new Date()
+                      date.setDate(date.getDate() - dateOffset)
+                      const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
                       return (
                         <div
                           key={`${weekIndex}-${dayIndex}`}
                           className={`heatmap-day intensity-${intensity}`}
-                          title={`${count} contributions`}
+                          title={`${count} contribution${count !== 1 ? 's' : ''} on ${dayNames[dayIndex]}, ${dateStr}`}
                         />
                       )
                     })}
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="heatmap-legend">
-              <span className="legend-label">Less</span>
-              {[0, 1, 2, 3, 4].map(level => (
-                <div key={level} className={`legend-box intensity-${level}`} />
-              ))}
-              <span className="legend-label">More</span>
             </div>
           </div>
 
@@ -134,7 +143,7 @@ function ActivityFeed() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            View all activity on GitHub →
+            {t.viewAllActivity} →
           </a>
         </>
       ) : (

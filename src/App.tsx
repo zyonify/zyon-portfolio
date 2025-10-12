@@ -9,13 +9,20 @@ import ActivityFeed from './components/ActivityFeed'
 import SocialSection from './components/SocialSection'
 import AchievementToast from './components/AchievementToast'
 import AchievementModal from './components/AchievementModal'
+import InfoModal from './components/InfoModal'
 import SteamNotification from './components/SteamNotification'
+import SignOutSatire from './components/SignOutSatire'
+import { LanguageProvider } from './contexts/LanguageContext'
 import { portfolioConfig } from './config/portfolio.config'
 import { initializeAchievementSystem, trackKonamiKey } from './services/achievementService'
 import './styles/App.css'
 
 function App() {
   const [showAchievementModal, setShowAchievementModal] = useState(false)
+  const [showInfoModal, setShowInfoModal] = useState(false)
+
+  // Simple routing - check if we're on the satire sign out page
+  const isSignOutPage = window.location.pathname === '/satire-signout'
 
   const backgroundStyle = {
     backgroundImage: `url(${portfolioConfig.personal.banner})`,
@@ -37,31 +44,46 @@ function App() {
     }
   }, [])
 
+  // Show satire sign out page
+  if (isSignOutPage) {
+    return <SignOutSatire />
+  }
+
+  // Show main portfolio
   return (
-    <div className="app" style={backgroundStyle}>
-      <Header onOpenAchievements={() => setShowAchievementModal(true)} />
-      <AchievementToast />
-      <SteamNotification />
-      <main className="container">
-        <div className="content-wrapper">
-          <div className="main-content">
-            <ProfileOverview />
-            <ResumeViewer />
-            <Showcases />
+    <LanguageProvider>
+      <div className="app" style={backgroundStyle}>
+        <Header
+          onOpenAchievements={() => setShowAchievementModal(true)}
+          onOpenInfo={() => setShowInfoModal(true)}
+        />
+        <AchievementToast />
+        <SteamNotification />
+        <main className="container">
+          <div className="content-wrapper">
+            <div className="main-content">
+              <ProfileOverview />
+              <ResumeViewer />
+              <Showcases />
+            </div>
+            <aside className="sidebar">
+              <ProfileStats />
+              <StatsSection />
+              <ActivityFeed />
+              <SocialSection />
+            </aside>
           </div>
-          <aside className="sidebar">
-            <ProfileStats />
-            <StatsSection />
-            <ActivityFeed />
-            <SocialSection />
-          </aside>
-        </div>
-      </main>
-      <AchievementModal
-        isOpen={showAchievementModal}
-        onClose={() => setShowAchievementModal(false)}
-      />
-    </div>
+        </main>
+        <AchievementModal
+          isOpen={showAchievementModal}
+          onClose={() => setShowAchievementModal(false)}
+        />
+        <InfoModal
+          isOpen={showInfoModal}
+          onClose={() => setShowInfoModal(false)}
+        />
+      </div>
+    </LanguageProvider>
   )
 }
 

@@ -3,10 +3,12 @@ import './SocialSection.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { fetchUserProfile } from '../services/github'
 import { unlockAchievement, trackSectionVisit } from '../services/achievementService'
+import { useLanguage } from '../contexts/LanguageContext'
 
 function SocialSection() {
   const [followers, setFollowers] = useState<number>(0)
   const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const loadFollowers = async () => {
@@ -88,11 +90,11 @@ function SocialSection() {
   return (
     <div className="social-section" id="contact">
       <section className="card connections-card">
-        <div className="card-header">Connect With Me</div>
+        <div className="card-header">{t.connectWithMe}</div>
         <div className="connections-content">
           <div className="connections-count">
             <span className="count-number">{loading ? '...' : followers}</span>
-            <span className="count-label">GitHub Followers</span>
+            <span className="count-label">{t.githubFollowers}</span>
           </div>
           <div className="social-links">
             {socialLinks.map(link => (

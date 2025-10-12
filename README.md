@@ -9,6 +9,29 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ## 🆕 Recent Updates
 
+### October 12, 2025
+- **🌐 Multi-Language System**: Added comprehensive language switching feature
+  - 6 languages available: English, Sarcasm, Binary, Emoji Only, Lorem Ipsum, and Young Stunnah (Filipino Gen Z slang)
+  - Dropdown menu in header with instant language switching
+  - LocalStorage persistence - language preference saved across sessions
+  - All UI text translates dynamically: headers, navigation, card titles, buttons, stats
+  - Satirical language options for entertainment:
+    - **Sarcasm**: "Code Dumps", "Pity Stars", "Things I Googled Once", "ZYON'S HUMBLE PORTFOLIO"
+    - **Binary**: All text converted to binary code
+    - **Emoji Only**: Pure emoji representations (👤 💼 📧 🎯)
+    - **Lorem Ipsum**: Classic placeholder Latin text
+    - **Young Stunnah**: Filipino Gen Z slang ("Petmalu Profile", "Bet na Bet Projects", "Flex Wall", "Dev Lodi")
+  - Translations include: navigation links, card headers, button text, loading states, and more
+- **🎨 Header Improvements**: Two-tier Steam-style header layout
+  - Top bar: Info button, Achievement badge, User dropdown with language selection
+  - Main header: Logo with translated title, navigation links
+  - User dropdown menu with Steam-like styling (account details, wallet, language submenu, sign out)
+  - Language submenu appears on hover with smooth transitions
+- **ℹ️ Info Modal**: Behind-the-scenes portfolio information
+  - Explains XP system, level tiers, achievement mechanics, and hidden features
+  - Tabbed interface: Level Tiers, Achievements, XP Sources, Easter Eggs
+  - Unified styling with Achievement Modal for consistency
+
 ### October 10, 2025
 - **🏆 Visitor Achievement System**: Added Steam-style achievement system with 18 achievements
   - Real-time toast notifications when achievements are unlocked
@@ -31,6 +54,21 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
   - Cleaner, more focused profile overview section
 
 ## ✨ Features
+
+### 🌐 Multi-Language Support
+- **6 Language Options**: Switch between English, Sarcasm, Binary, Emoji Only, Lorem Ipsum, and Young Stunnah
+  - **English**: Standard professional language
+  - **Sarcasm**: Humorous self-deprecating versions of all text
+  - **Binary**: All text converted to binary code for the tech purists
+  - **Emoji Only**: Pure emoji representations (👤 💼 📧 🎯)
+  - **Lorem Ipsum**: Classic placeholder Latin text
+  - **Young Stunnah**: Filipino Gen Z slang ("Petmalu Profile", "Dev Lodi", "Bet na Bet Projects")
+- **Persistent Preferences**: Language choice saved in LocalStorage across sessions
+- **Comprehensive Translation**: All UI elements translate dynamically
+  - Navigation links, card headers, button text, stat labels, loading states
+  - Portfolio title, section titles, and all user-facing text
+- **Steam-Style Language Selector**: Dropdown submenu in header with hover interaction
+- **Instant Switching**: No page reload required - changes apply immediately
 
 ### 🎮 Gamification System
 - **Developer Level System**: XP-based progression with circular progress ring
@@ -87,25 +125,30 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 - **Resume Viewer**: Built-in PDF viewer with expand/collapse and download
 
 ### 🎯 Key Sections
-1. **Profile Overview**: Name, title, location with Steam profile frame
-2. **Developer Level**: XP-based level system with progress ring, stat breakdown, and work status
-3. **Visitor Achievements**: Interactive achievement system with toast notifications and modal
-4. **Resume Viewer**: Embedded PDF with expand/collapse and download
-5. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
-6. **Achievement Showcase**: Rarity-based certifications and career milestones
-7. **Technical Skills**: Categorized skills with hover animations
-8. **GitHub Stats**: Animated counters, language donut chart, and completion rate
-9. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
-10. **Social Links**: GitHub, LinkedIn, Email contact info
-11. **Steam Notifications**: Satirical friend notifications appearing periodically
+1. **Header Navigation**: Two-tier Steam-style header with language selector, info button, and achievements
+2. **Profile Overview**: Name, title, location with Steam profile frame
+3. **Developer Level**: XP-based level system with progress ring, stat breakdown, and work status
+4. **Visitor Achievements**: Interactive achievement system with toast notifications and modal
+5. **Resume Viewer**: Embedded PDF with expand/collapse and download
+6. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
+7. **Achievement Showcase**: Rarity-based certifications and career milestones
+8. **Personal Hobbies**: Interactive hobby cards with engagement tracking
+9. **Technical Skills**: Categorized skills with hover animations
+10. **GitHub Stats**: Animated counters, language donut chart, and completion rate
+11. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
+12. **Social Links**: GitHub, LinkedIn, Email contact info
+13. **Steam Notifications**: Satirical friend notifications appearing periodically
+14. **Info Modal**: Behind-the-scenes details about portfolio mechanics and features
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18.3** - UI framework
-- **TypeScript 5.6** - Type safety
-- **Vite 6.0** - Build tool and dev server
-- **CSS3** - Styling with custom properties
+- **React 18.3** - UI framework with hooks (useState, useEffect, useContext)
+- **TypeScript 5.6** - Type safety and interfaces
+- **Vite 6.0** - Build tool and dev server with HMR
+- **CSS3** - Styling with custom properties and animations
+- **React Context API** - Global state management for language switching
+- **LocalStorage API** - Persistent user preferences across sessions
 
 ### APIs & Services
 - **GitHub REST API** - Fetch repos and user data
@@ -247,6 +290,48 @@ body.CosmicTheme {
 ```
 
 ## 🎨 Features Showcase
+
+### 🌐 Multi-Language System
+
+Switch between 6 different languages for a completely different experience:
+
+**English (Standard)**
+- Navigation: Profile, Projects, Contact, Skills
+- Stats: Developer Level, Years of Experience, Repositories
+- Headers: Featured Projects, Achievement Showcase, Recent Activity
+
+**Sarcasm (Humorous)**
+- Navigation: Profile (Totally Unique), Projects (Revolutionary), Contact (I'll Respond, Promise)
+- Stats: Developer Level (Self-Proclaimed), Years of Pretending, Code Dumps
+- Headers: Featured Experiments, Trophy Case (Empty Soon), Recent Excuses
+
+**Binary (Tech Purist)**
+- Everything converted to binary code
+- Navigation: `01010000 01110010 01101111` (Profile)
+- Complete binary representation of all text
+
+**Emoji Only (Visual)**
+- Navigation: 👤 (Profile), 💼 (Projects), 📧 (Contact), 🎯 (Skills)
+- Stats: 👨‍💻 📊 (Developer Level), 📅 ⏳ (Years), 📦 (Repositories)
+- Pure emoji-based communication
+
+**Lorem Ipsum (Classic)**
+- Navigation: Lorem, Ipsum, Dolor, Sit Amet
+- Headers: Quis Nostrud, Exercitation Ullamco, Magna Aliqua
+- Traditional placeholder Latin text throughout
+
+**Young Stunnah (Filipino Gen Z Slang)**
+- Navigation: Petmalu Profile, Werpa Projects, Chika Tayo, Swabe Skills
+- Stats: Dev Lodi Level, G na G Years, Code Sesh
+- Headers: Bet na Bet Projects, Flex Wall, Latest Gawa
+- Portfolio Title: PORTFOLIO NI ZYON
+
+**How to Use:**
+1. Click on your name in the top-right header
+2. Hover over "Change language"
+3. Select your preferred language from the submenu
+4. Watch all text instantly transform!
+5. Your choice is saved automatically for future visits
 
 ### 🏆 Developer Level System
 The gamification system calculates your developer level based on GitHub activity:
