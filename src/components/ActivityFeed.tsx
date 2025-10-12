@@ -67,10 +67,13 @@ function ActivityFeed() {
 
   // Track section visit with Intersection Observer
   useEffect(() => {
+    let hasTracked = false
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !hasTracked) {
           trackSectionVisit('activity')
+          hasTracked = true
         }
       },
       { threshold: 0.3 }
@@ -148,8 +151,8 @@ function ActivityFeed() {
           </div>
 
           <div className="activity-list">
-            {activities.slice(0, 8).map(activity => (
-              <div key={activity.id} className="activity-item">
+            {activities.slice(0, 8).map((activity, index) => (
+              <div key={`${activity.id}-${index}`} className="activity-item">
                 <div className="activity-icon">{activity.icon}</div>
                 <div className="activity-content">
                   <div className="activity-text">

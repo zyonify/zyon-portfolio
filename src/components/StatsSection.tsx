@@ -74,12 +74,19 @@ function StatsSection() {
   }, [loading, stats, isVisible])
 
   useEffect(() => {
+    let hasTracked = false
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true)
-          // Track stats section visit for achievement
-          trackSectionVisit('stats')
+        if (entry.isIntersecting) {
+          if (!isVisible) {
+            setIsVisible(true)
+          }
+          // Track stats section visit for achievement (only once)
+          if (!hasTracked) {
+            trackSectionVisit('stats')
+            hasTracked = true
+          }
         }
       },
       { threshold: 0.1 }
