@@ -26,10 +26,9 @@ const emitAchievementUnlock = (achievement: VisitorAchievement) => {
 export const loadAchievements = (): VisitorAchievement[] => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (!stored) return [...visitorAchievements]
+    const unlockedData = stored ? JSON.parse(stored) as { [key: string]: { unlocked: boolean; unlockedAt: number } } : {}
 
-    const unlockedData = JSON.parse(stored) as { [key: string]: { unlocked: boolean; unlockedAt: number } }
-
+    // Always return new objects to prevent mutation of the original config
     return visitorAchievements.map(achievement => ({
       ...achievement,
       unlocked: unlockedData[achievement.id]?.unlocked || false,
@@ -37,7 +36,8 @@ export const loadAchievements = (): VisitorAchievement[] => {
     }))
   } catch (error) {
     console.error('Error loading achievements:', error)
-    return [...visitorAchievements]
+    // Return new objects, not references to the original config
+    return visitorAchievements.map(achievement => ({ ...achievement, unlocked: false }))
   }
 }
 
