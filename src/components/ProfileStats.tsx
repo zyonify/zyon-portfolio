@@ -40,7 +40,7 @@ function ProfileStats() {
   const { t } = useLanguage()
 
   const stats = { repos, followers, stars, years: yearsOfExperience }
-  const { level, currentLevelXP, nextLevelXP, progress, totalXP } = calculateLevel(stats)
+  const { level, currentLevelXP, nextLevelXP, progress } = calculateLevel(stats)
   const levelStyle = getLevelBorderStyle(level)
 
   useEffect(() => {
