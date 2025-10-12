@@ -125,7 +125,7 @@ function ProfileStats() {
           </div>
           <div className="level-info">
             <h3 className="level-title">Level {loading ? '...' : level} Developer</h3>
-            <p className="level-subtitle">{yearsOfExperience}+ Years Experience</p>
+            <p className="level-subtitle">{yearsOfExperience}+ Years of Experience</p>
             <div className="work-status-badge" style={{ borderColor: statusConfig.color }}>
               <span className="status-dot" style={{ background: statusConfig.color, boxShadow: `0 0 8px ${statusConfig.color}` }}></span>
               {portfolioConfig.workStatus.message}
@@ -162,6 +162,11 @@ function ProfileStats() {
           <span className="stat-badge-label">Total Stars</span>
           <span className="stat-badge-value">{loading ? '...' : stars}</span>
           <span className="stat-badge-xp">+{(stars * 10).toLocaleString()} XP</span>
+        </div>
+        <div className="stat-badge experience-badge">
+          <span className="stat-badge-label">Years of Experience</span>
+          <span className="stat-badge-value">{yearsOfExperience}+</span>
+          <span className="stat-badge-xp">+{(yearsOfExperience * 500).toLocaleString()} XP</span>
         </div>
       </div>
     </div>

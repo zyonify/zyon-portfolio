@@ -83,7 +83,7 @@ export const portfolioConfig: PortfolioConfig = {
     },
     {
       id: 4,
-      title: '8+ Years Experience',
+      title: '8+ Years of Experience',
       description: 'Full-Stack Development',
       icon: '💻',
       year: 2017,
