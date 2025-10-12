@@ -473,6 +473,7 @@ body.CosmicTheme .achievement-badge-btn-topbar:hover {
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .dropdown-submenu-item:hover {

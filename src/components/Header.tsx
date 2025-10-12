@@ -232,9 +232,18 @@ function Header({ onOpenAchievements, onOpenInfo }: HeaderProps) {
                           Young Stunnah {language === 'youngStunnah' && '✓'}
                         </button>
                         <div className="dropdown-divider"></div>
-                        <button className="dropdown-submenu-item dropdown-submenu-report">
+                        <a
+                          href={`https://github.com/zyonify/zyon-portfolio/issues/new?title=Translation%20Issue&body=**Language:**%20${language}%0A%0A**Issue%20Description:**%0A(Please%20describe%20the%20translation%20problem%20you%20found)%0A%0A**Expected%20Translation:**%0A(What%20should%20it%20say%20instead?)&labels=translation,bug`}
+                          className="dropdown-submenu-item dropdown-submenu-report"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            setShowLanguageSubmenu(false)
+                            setShowUserDropdown(false)
+                          }}
+                        >
                           Report a translation problem
-                        </button>
+                        </a>
                       </div>
                     )}
                   </div>
