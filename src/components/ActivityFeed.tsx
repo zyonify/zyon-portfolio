@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './ActivityFeed.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { getProcessedActivity } from '../services/github'
 import { ProcessedActivity } from '../types'
 import { useLanguage } from '../contexts/LanguageContext'
+import { trackSectionVisit } from '../services/achievementService'
 
 // Generate activity heatmap data for last 12 weeks
 function generateActivityHeatmap(activities: ProcessedActivity[]) {
@@ -46,6 +47,7 @@ function ActivityFeed() {
   const [loading, setLoading] = useState(true)
   const weeks = 12
   const { t } = useLanguage()
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const loadActivity = async () => {
@@ -63,12 +65,34 @@ function ActivityFeed() {
     loadActivity()
   }, [])
 
+  // Track section visit with Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          trackSectionVisit('activity')
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   const heatmapData = generateActivityHeatmap(activities)
   const maxActivity = Math.max(...heatmapData.flat(), 1)
   const totalContributions = activities.length
 
   return (
-    <section className="card activity-feed">
+    <section className="card activity-feed" id="activity" ref={sectionRef}>
       <div className="card-header">{t.recentActivity}</div>
       {loading ? (
         <div className="activity-list">

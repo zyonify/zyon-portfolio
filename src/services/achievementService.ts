@@ -213,8 +213,10 @@ export const trackProjectView = (projectId: string) => {
     trackingData.projectsViewed.push(projectId)
     updateTrackingData({ projectsViewed: trackingData.projectsViewed })
 
-    // Check if all projects viewed (you'll need to pass total count)
-    // This will be checked when clicking project demo/code links
+    // Check if all featured projects viewed (2 total from portfolio config)
+    if (trackingData.projectsViewed.length >= 2) {
+      unlockAchievement('project-hunter')
+    }
   }
 }
 

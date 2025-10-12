@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import './StatsSection.css'
 import { getStats } from '../services/github'
 import { ProcessedStats } from '../types'
+import { trackSectionVisit } from '../services/achievementService'
 
 // Animated counter hook
 function useCountUp(end: number, duration: number = 2000, shouldStart: boolean = false) {
@@ -77,6 +78,8 @@ function StatsSection() {
       ([entry]) => {
         if (entry.isIntersecting && !isVisible) {
           setIsVisible(true)
+          // Track stats section visit for achievement
+          trackSectionVisit('stats')
         }
       },
       { threshold: 0.1 }
@@ -99,7 +102,7 @@ function StatsSection() {
 
   if (loading || !stats) {
     return (
-      <div className="stats-section" id="skills">
+      <div className="stats-section" id="stats">
         <section className="card stats-card">
           <div className="card-header">GitHub Stats</div>
           <div className="stats-content">
@@ -111,7 +114,7 @@ function StatsSection() {
   }
 
   return (
-    <div className="stats-section" id="skills" ref={sectionRef}>
+    <div className="stats-section" id="stats" ref={sectionRef}>
       <section className="card stats-card">
         <div className="card-header">GitHub Stats</div>
         <div className="stats-content">
