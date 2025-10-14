@@ -7,9 +7,10 @@ import { Language } from '../services/languageService'
 interface HeaderProps {
   onOpenAchievements: () => void
   onOpenInfo: () => void
+  onOpenWallet: () => void
 }
 
-function Header({ onOpenAchievements, onOpenInfo }: HeaderProps) {
+function Header({ onOpenAchievements, onOpenInfo, onOpenWallet }: HeaderProps) {
   const [activeSection, setActiveSection] = useState('profile')
   const [achievementStats, setAchievementStats] = useState(getAchievementStats())
   const [showUserDropdown, setShowUserDropdown] = useState(false)
@@ -177,8 +178,8 @@ function Header({ onOpenAchievements, onOpenInfo }: HeaderProps) {
                     Account details: <span className="account-name">zyonify</span>
                   </button>
 
-                  <button className="dropdown-item">
-                    View my wallet <span className="account-name">P0.00</span>
+                  <button className="dropdown-item" onClick={onOpenWallet}>
+                    View my wallet <span className="account-name">₱0.00</span>
                   </button>
 
                   <div

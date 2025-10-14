@@ -10,6 +10,7 @@ import SocialSection from './components/SocialSection'
 import AchievementToast from './components/AchievementToast'
 import AchievementModal from './components/AchievementModal'
 import InfoModal from './components/InfoModal'
+import WalletModal from './components/WalletModal'
 import SteamNotification from './components/SteamNotification'
 import SignOutSatire from './components/SignOutSatire'
 import { LanguageProvider } from './contexts/LanguageContext'
@@ -20,6 +21,7 @@ import './styles/App.css'
 function App() {
   const [showAchievementModal, setShowAchievementModal] = useState(false)
   const [showInfoModal, setShowInfoModal] = useState(false)
+  const [showWalletModal, setShowWalletModal] = useState(false)
 
   // Simple routing - check if we're on the satire sign out page
   const isSignOutPage = window.location.pathname === '/satire-signout'
@@ -56,6 +58,7 @@ function App() {
         <Header
           onOpenAchievements={() => setShowAchievementModal(true)}
           onOpenInfo={() => setShowInfoModal(true)}
+          onOpenWallet={() => setShowWalletModal(true)}
         />
         <AchievementToast />
         <SteamNotification />
@@ -81,6 +84,10 @@ function App() {
         <InfoModal
           isOpen={showInfoModal}
           onClose={() => setShowInfoModal(false)}
+        />
+        <WalletModal
+          isOpen={showWalletModal}
+          onClose={() => setShowWalletModal(false)}
         />
       </div>
     </LanguageProvider>

@@ -202,6 +202,17 @@ export const visitorAchievements: VisitorAchievement[] = [
     xp: 15,
   },
   {
+    id: 'generous-soul',
+    title: 'Generous Soul',
+    description: 'Opened the wallet to support the developer',
+    icon: '💝',
+    unlocked: false,
+    trigger: 'click',
+    triggerCondition: 'wallet-open',
+    rarity: 'rare',
+    xp: 50,
+  },
+  {
     id: 'profile-completionist',
     title: 'Profile Completionist',
     description: 'Unlocked 10 or more achievements!',

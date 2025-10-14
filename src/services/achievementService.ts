@@ -262,6 +262,11 @@ export const trackLogoClick = () => {
   }
 }
 
+// Track wallet open
+export const trackWalletOpen = () => {
+  unlockAchievement('generous-soul')
+}
+
 // Konami code sequence
 const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
 
