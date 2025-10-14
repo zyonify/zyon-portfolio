@@ -48,7 +48,7 @@ function ProfileOverview() {
             {t.profileDescription.split('\n').map((line, index) => (
               <span key={index}>
                 {line}
-                {index < t.profileDescription.split('\n').length - 1 && <><br /><br /></>}
+                {index < t.profileDescription.split('\n').length - 1 && <br />}
               </span>
             ))}
           </p>
