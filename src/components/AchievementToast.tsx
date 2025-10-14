@@ -6,6 +6,7 @@ import { onAchievementUnlock } from '../services/achievementService'
 interface ToastData extends VisitorAchievement {
   id: string
   timestamp: number
+  toastId: string
 }
 
 function AchievementToast() {
@@ -13,33 +14,37 @@ function AchievementToast() {
 
   useEffect(() => {
     const unsubscribe = onAchievementUnlock((achievement) => {
+      // Generate unique toast ID using achievement ID and timestamp
+      const toastId = `${achievement.id}-${Date.now()}-${Math.random()}`
+
       const toast: ToastData = {
         ...achievement,
         timestamp: Date.now(),
+        toastId,
       }
 
       setToasts(prev => [...prev, toast])
 
       // Auto-remove after 5 seconds
       setTimeout(() => {
-        setToasts(prev => prev.filter(t => t.timestamp !== toast.timestamp))
+        setToasts(prev => prev.filter(t => t.toastId !== toastId))
       }, 5000)
     })
 
     return unsubscribe
   }, [])
 
-  const removeToast = (timestamp: number) => {
-    setToasts(prev => prev.filter(t => t.timestamp !== timestamp))
+  const removeToast = (toastId: string) => {
+    setToasts(prev => prev.filter(t => t.toastId !== toastId))
   }
 
   return (
     <div className="achievement-toast-container">
       {toasts.map((toast) => (
         <div
-          key={toast.timestamp}
+          key={toast.toastId}
           className={`achievement-toast ${toast.rarity || 'common'}`}
-          onClick={() => removeToast(toast.timestamp)}
+          onClick={() => removeToast(toast.toastId)}
         >
           <div className="toast-shine"></div>
           <div className="toast-header">
@@ -56,7 +61,7 @@ function AchievementToast() {
           <div className="toast-progress">
             <div className="toast-progress-bar"></div>
           </div>
-          <button className="toast-close" onClick={() => removeToast(toast.timestamp)}>
+          <button className="toast-close" onClick={() => removeToast(toast.toastId)}>
             ×
           </button>
         </div>

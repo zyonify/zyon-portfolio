@@ -9,6 +9,14 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ## 🆕 Recent Updates
 
+### October 14, 2025
+- **🐛 Achievement System Fixes**: Fixed duplicate achievement triggering
+  - Added race condition guard to prevent concurrent achievement unlocks
+  - Implemented unique toast IDs to prevent React key collisions
+  - Each achievement now triggers exactly once as intended
+  - Eliminated duplicate toast notifications appearing simultaneously
+  - Improved IntersectionObserver threshold (30% → 10%) for better section detection
+
 ### October 13, 2025
 - **🏆 Achievement XP Integration**: Achievements now contribute to developer level
   - Unlocking achievements adds XP to your level progress bar (10-200 XP per achievement)

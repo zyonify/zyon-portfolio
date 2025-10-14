@@ -54,7 +54,7 @@ function Showcases() {
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     )
 
     if (projectsSection) observer.observe(projectsSection)

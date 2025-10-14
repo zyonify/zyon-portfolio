@@ -8,6 +8,9 @@ const TRACKING_KEY = 'portfolio_tracking'
 type AchievementListener = (achievement: VisitorAchievement) => void
 const listeners: AchievementListener[] = []
 
+// Guard against concurrent unlocks of the same achievement
+const unlockingInProgress = new Set<string>()
+
 export const onAchievementUnlock = (callback: AchievementListener) => {
   listeners.push(callback)
   return () => {
@@ -62,6 +65,11 @@ const saveAchievements = (achievements: VisitorAchievement[]) => {
 
 // Unlock an achievement
 export const unlockAchievement = (achievementId: string): VisitorAchievement | null => {
+  // Prevent concurrent unlocks of the same achievement
+  if (unlockingInProgress.has(achievementId)) {
+    return null
+  }
+
   const achievements = loadAchievements()
   const achievement = achievements.find(a => a.id === achievementId)
 
@@ -69,11 +77,17 @@ export const unlockAchievement = (achievementId: string): VisitorAchievement | n
     return null
   }
 
+  // Mark as being unlocked
+  unlockingInProgress.add(achievementId)
+
   achievement.unlocked = true
   achievement.unlockedAt = Date.now()
 
   saveAchievements(achievements)
   emitAchievementUnlock(achievement)
+
+  // Remove from in-progress set
+  unlockingInProgress.delete(achievementId)
 
   // Check for meta-achievements (achievements that unlock based on other achievements)
   checkMetaAchievements(achievements)

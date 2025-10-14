@@ -30,13 +30,15 @@ function SocialSection() {
 
   // Track section visit with Intersection Observer
   useEffect(() => {
+    let hasTracked = false
     const contactSection = document.getElementById('contact')
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !hasTracked) {
             trackSectionVisit('contact')
+            hasTracked = true
           }
         })
       },

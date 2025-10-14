@@ -207,7 +207,7 @@ function InfoModal({ isOpen, onClose }: InfoModalProps) {
               <h3>Visitor Achievements</h3>
               <p className="info-description">
                 {visitorAchievements.length} achievements worth <strong>{getTotalPossibleXP()} total XP</strong>.
-                Explore the portfolio to unlock them all!
+                Each achievement triggers only once with race condition protection. Explore the portfolio to unlock them all!
               </p>
 
               {Object.entries(achievementsByRarity).map(([rarity, achievements]) => (
