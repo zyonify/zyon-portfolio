@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './AchievementModal.css'
 import { getAchievementStats } from '../services/achievementService'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface AchievementModalProps {
   isOpen: boolean
@@ -10,6 +11,7 @@ interface AchievementModalProps {
 function AchievementModal({ isOpen, onClose }: AchievementModalProps) {
   const [stats, setStats] = useState(getAchievementStats())
   const [filter, setFilter] = useState<'all' | 'unlocked' | 'locked'>('all')
+  const { t } = useLanguage()
 
   useEffect(() => {
     if (isOpen) {
@@ -52,19 +54,19 @@ function AchievementModal({ isOpen, onClose }: AchievementModalProps) {
             className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
             onClick={() => setFilter('all')}
           >
-            All ({stats.totalCount})
+            {t.allTab} ({stats.totalCount})
           </button>
           <button
             className={`filter-btn ${filter === 'unlocked' ? 'active' : ''}`}
             onClick={() => setFilter('unlocked')}
           >
-            Unlocked ({stats.unlockedCount})
+            {t.unlockedTab} ({stats.unlockedCount})
           </button>
           <button
             className={`filter-btn ${filter === 'locked' ? 'active' : ''}`}
             onClick={() => setFilter('locked')}
           >
-            Locked ({stats.totalCount - stats.unlockedCount})
+            {t.lockedTab} ({stats.totalCount - stats.unlockedCount})
           </button>
         </div>
 

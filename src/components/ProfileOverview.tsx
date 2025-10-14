@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import './ProfileOverview.css'
 import { portfolioConfig } from '../config/portfolio.config'
 import { fetchUserProfile } from '../services/github'
+import { useLanguage } from '../contexts/LanguageContext'
 
 function ProfileOverview() {
   const [avatarUrl, setAvatarUrl] = useState<string>(portfolioConfig.personal.avatar || '')
+  const { t } = useLanguage()
 
   useEffect(() => {
     // Fetch GitHub profile data
@@ -42,6 +44,14 @@ function ProfileOverview() {
             </svg>
             <span>{portfolioConfig.personal.location}</span>
           </div>
+          <p className="profile-description">
+            {t.profileDescription.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < t.profileDescription.split('\n').length - 1 && <><br /><br /></>}
+              </span>
+            ))}
+          </p>
         </div>
       </div>
     </section>

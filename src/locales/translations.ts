@@ -16,6 +16,8 @@ export interface Translations {
   followers: string
   totalStars: string
   achievements: string
+  workStatus: string
+  profileDescription: string
 
   // Sections
   recentActivity: string
@@ -41,6 +43,11 @@ export interface Translations {
   loading: string
   more: string
   less: string
+
+  // Modal tabs
+  allTab: string
+  unlockedTab: string
+  lockedTab: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -58,6 +65,8 @@ export const translations: Record<Language, Translations> = {
     followers: 'Followers',
     totalStars: 'Total Stars',
     achievements: 'Achievements',
+    workStatus: 'Not looking for work',
+    profileDescription: "Just your average developer from the Philippines -- currently leading a development team and working primarily with the .NET stack. I've also worn the Scrum Master hat, backed by a few certifications to prove it.\n\nI'm passionate about turning innovative ideas into real, working solutions and love approaching challenges from a fresh perspective. Off the clock, I'm just a chill guy who enjoys learning, building, and improving things.",
 
     recentActivity: 'Recent Activity',
     contributions: 'contributions in last 12 weeks',
@@ -78,7 +87,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: 'Loading...',
     more: 'More',
-    less: 'Less'
+    less: 'Less',
+
+    allTab: 'All',
+    unlockedTab: 'Unlocked',
+    lockedTab: 'Locked'
   },
 
   sarcasm: {
@@ -95,6 +108,8 @@ export const translations: Record<Language, Translations> = {
     followers: 'Stalkers',
     totalStars: 'Pity Stars',
     achievements: 'Participation Trophies',
+    workStatus: 'Definitely not desperate for opportunities',
+    profileDescription: "Just another genius from the Philippines (humble brag) -- allegedly leading a team while mostly Googling .NET errors. Wore the Scrum Master hat once, got some PDFs to prove it.\n\nSupposedly passionate about revolutionary ideas (read: copied from StackOverflow) and fresh perspectives (Ctrl+C, Ctrl+V). Off the clock, I'm just a guy pretending to enjoy continuous self-improvement.",
 
     recentActivity: 'Recent Excuses',
     contributions: 'attempts at productivity',
@@ -115,7 +130,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: 'Pretending to load...',
     more: 'Ugh, More',
-    less: 'Thank God, Less'
+    less: 'Thank God, Less',
+
+    allTab: 'Everything (Overwhelming)',
+    unlockedTab: 'My Sad Victories',
+    lockedTab: 'Future Disappointments'
   },
 
   binary: {
@@ -132,6 +151,8 @@ export const translations: Record<Language, Translations> = {
     followers: '01000110 01101111 01101100',
     totalStars: '01010011 01110100 01100001',
     achievements: '01000001 01100011 01101000',
+    workStatus: '01001110 01101111 00100000 01110111 01101111 01110010 01101011',
+    profileDescription: '01000100 01100101 01110110 01100101 01101100 01101111 01110000 01100101 01110010...',
 
     recentActivity: '01000001 01100011 01110100',
     contributions: '01100011 01101111 01101110 01110100',
@@ -152,7 +173,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: '01001100 01101111 01100001 01100100',
     more: '01001101 01101111 01110010 01100101',
-    less: '01001100 01100101 01110011 01110011'
+    less: '01001100 01100101 01110011 01110011',
+
+    allTab: '01000001 01101100 01101100',
+    unlockedTab: '01010101 01101110 01101100',
+    lockedTab: '01001100 01101111 01100011 01101011'
   },
 
   emoji: {
@@ -169,6 +194,8 @@ export const translations: Record<Language, Translations> = {
     followers: '👥',
     totalStars: '⭐',
     achievements: '🏆',
+    workStatus: '🚫 💼',
+    profileDescription: '🇵🇭 👨‍💻 .NET 💻 Scrum Master 📋...',
 
     recentActivity: '⚡ 📋',
     contributions: '🎯',
@@ -189,7 +216,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: '⏳...',
     more: '➕',
-    less: '➖'
+    less: '➖',
+
+    allTab: '📊',
+    unlockedTab: '✅',
+    lockedTab: '🔒'
   },
 
   lorem: {
@@ -206,6 +237,8 @@ export const translations: Record<Language, Translations> = {
     followers: 'Tempor Incididunt',
     totalStars: 'Ut Labore',
     achievements: 'Dolore Magna',
+    workStatus: 'Non laborare quaerens',
+    profileDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
 
     recentActivity: 'Magna Aliqua',
     contributions: 'dolor sit amet',
@@ -226,7 +259,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: 'Expectans...',
     more: 'Magis',
-    less: 'Minus'
+    less: 'Minus',
+
+    allTab: 'Omnes',
+    unlockedTab: 'Apertus',
+    lockedTab: 'Clausus'
   },
 
   youngStunnah: {
@@ -243,6 +280,8 @@ export const translations: Record<Language, Translations> = {
     followers: 'Tropa',
     totalStars: 'Solid Stars',
     achievements: 'Flex Badges',
+    workStatus: 'Walang work hanap (chill lang)',
+    profileDescription: 'Simpleng dev lang from Pinas -- lead ng team tapos .NET expert daw. Naging Scrum Master din, meron pang mga certificate pa naman.\n\nGusto ko mag-innovate at gumawa ng legit solutions. Chill lang off-duty, nag-aaral at nag-improve lang ng skills.',
 
     recentActivity: 'Latest Gawa',
     contributions: 'lodi moves',
@@ -263,7 +302,11 @@ export const translations: Record<Language, Translations> = {
 
     loading: 'Sandali lang...',
     more: 'Pa-more',
-    less: 'Sakto na'
+    less: 'Sakto na',
+
+    allTab: 'Lahat',
+    unlockedTab: 'Nakuha Na',
+    lockedTab: 'Di Pa Makuha'
   }
 }
 

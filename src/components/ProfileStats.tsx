@@ -142,7 +142,7 @@ function ProfileStats() {
             <p className="level-subtitle">{yearsOfExperience}+ {t.yearsOfExperience}</p>
             <div className="work-status-badge" style={{ borderColor: statusConfig.color }}>
               <span className="status-dot" style={{ background: statusConfig.color, boxShadow: `0 0 8px ${statusConfig.color}` }}></span>
-              {portfolioConfig.workStatus.message}
+              {t.workStatus}
             </div>
           </div>
         </div>
