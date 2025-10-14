@@ -408,7 +408,7 @@ describe('Achievement Service', () => {
       const stats = getAchievementStats()
 
       // Calculate expected total XP
-      const expectedTotalXP = visitorAchievements.reduce((sum, a) => sum + a.xp, 0)
+      const expectedTotalXP = visitorAchievements.reduce((sum, a) => sum + (a.xp || 0), 0)
 
       expect(stats.totalXP).toBe(expectedTotalXP)
       expect(stats.unlockedCount).toBe(18)
