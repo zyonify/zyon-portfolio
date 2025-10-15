@@ -19,6 +19,12 @@ function Footer() {
         top: offsetPosition,
         behavior: 'smooth'
       })
+
+      // Add highlight animation (same as header)
+      section.classList.add('highlight-pulse')
+      setTimeout(() => {
+        section.classList.remove('highlight-pulse')
+      }, 2000)
     }
   }
 
