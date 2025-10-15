@@ -13,6 +13,7 @@ import InfoModal from './components/InfoModal'
 import WalletModal from './components/WalletModal'
 import SteamNotification from './components/SteamNotification'
 import SignOutSatire from './components/SignOutSatire'
+import Footer from './components/Footer'
 import { LanguageProvider } from './contexts/LanguageContext'
 import { portfolioConfig } from './config/portfolio.config'
 import { initializeAchievementSystem, trackKonamiKey } from './services/achievementService'
@@ -77,6 +78,7 @@ function App() {
             </aside>
           </div>
         </main>
+        <Footer />
         <AchievementModal
           isOpen={showAchievementModal}
           onClose={() => setShowAchievementModal(false)}

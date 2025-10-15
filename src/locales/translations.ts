@@ -48,6 +48,13 @@ export interface Translations {
   allTab: string
   unlockedTab: string
   lockedTab: string
+
+  // Footer
+  footerQuickLinks: string
+  footerAbout: string
+  footerTagline: string
+  footerCopyright: string
+  footerMadeWith: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -91,7 +98,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: 'All',
     unlockedTab: 'Unlocked',
-    lockedTab: 'Locked'
+    lockedTab: 'Locked',
+
+    footerQuickLinks: 'Quick Links',
+    footerAbout: 'About',
+    footerTagline: 'Steam-inspired portfolio showcasing projects and achievements',
+    footerCopyright: '© 2025 Victor Zyon Tiangson. All rights reserved.',
+    footerMadeWith: 'Made with my Steam profile inspiration'
   },
 
   sarcasm: {
@@ -134,7 +147,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: 'Everything (Overwhelming)',
     unlockedTab: 'My Sad Victories',
-    lockedTab: 'Future Disappointments'
+    lockedTab: 'Future Disappointments',
+
+    footerQuickLinks: 'Quick Links (Like You\'ll Use Them)',
+    footerAbout: 'About (My Inflated Ego)',
+    footerTagline: 'Yet another portfolio pretending to be unique (Steam-inspired edition)',
+    footerCopyright: '© 2025 Victor Zyon Tiangson. All rights reserved (not that anyone cares).',
+    footerMadeWith: 'Built with questionable decisions and Steam copying'
   },
 
   binary: {
@@ -177,7 +196,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: '01000001 01101100 01101100',
     unlockedTab: '01010101 01101110 01101100',
-    lockedTab: '01001100 01101111 01100011 01101011'
+    lockedTab: '01001100 01101111 01100011 01101011',
+
+    footerQuickLinks: '01010001 01110101 01101001 01100011 01101011',
+    footerAbout: '01000001 01100010 01101111 01110101 01110100',
+    footerTagline: '01010011 01110100 01100101 01100001 01101101...',
+    footerCopyright: '00101110 00101110 00101110',
+    footerMadeWith: '01001101 01100001 01100100 01100101'
   },
 
   emoji: {
@@ -220,7 +245,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: '📊',
     unlockedTab: '✅',
-    lockedTab: '🔒'
+    lockedTab: '🔒',
+
+    footerQuickLinks: '⚡ 🔗',
+    footerAbout: 'ℹ️ 👨‍💻',
+    footerTagline: '🎮 💻 🎨 ⭐',
+    footerCopyright: '© 2025 👨‍💻 ✨',
+    footerMadeWith: '❤️ 🎮'
   },
 
   lorem: {
@@ -263,7 +294,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: 'Omnes',
     unlockedTab: 'Apertus',
-    lockedTab: 'Clausus'
+    lockedTab: 'Clausus',
+
+    footerQuickLinks: 'Celeritas Nexus',
+    footerAbout: 'De Nobis',
+    footerTagline: 'Lorem ipsum dolor sit amet portfolio',
+    footerCopyright: '© MMXXV Victor Zyon Tiangson. Omnia iura reservata.',
+    footerMadeWith: 'Factum cum Steam inspiratio'
   },
 
   youngStunnah: {
@@ -306,7 +343,13 @@ export const translations: Record<Language, Translations> = {
 
     allTab: 'Lahat',
     unlockedTab: 'Nakuha Na',
-    lockedTab: 'Di Pa Makuha'
+    lockedTab: 'Di Pa Makuha',
+
+    footerQuickLinks: 'Mabilis na Links',
+    footerAbout: 'Tungkol',
+    footerTagline: 'Steam-inspired portfolio na pang-flex ng projects at achievements',
+    footerCopyright: '© 2025 Victor Zyon Tiangson. Respeto lang sa copyright ha.',
+    footerMadeWith: 'Gawa gamit ang Steam vibes'
   }
 }
 
