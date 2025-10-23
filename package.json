@@ -1,7 +1,7 @@
 {
   "name": "steam-profile-portfolio",
   "version": "1.0.0",
-  "description": "A stunning, interactive portfolio website inspired by Steam's profile design, built with React, TypeScript, and Vite",
+  "description": "A steam-inspired portfolio - stunning interactive portfolio website with Steam profile design, built with React, TypeScript, and Vite. Creative gaming-inspired developer portfolio showcasing projects and achievements.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,11 @@
     "test:coverage": "vitest --coverage"
   },
   "keywords": [
+    "steam-inspired-portfolio",
+    "steam-portfolio",
+    "steam-design",
+    "interactive-portfolio",
+    "gaming-inspired-portfolio",
     "portfolio",
     "steam",
     "react",
