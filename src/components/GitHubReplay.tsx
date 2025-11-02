@@ -50,14 +50,16 @@ export default function GitHubReplay() {
   if (loading) {
     return (
       <section className="card github-replay">
-        <div className="replay-header-wrapper">
-          <div className="card-header">{t.replayTitle}</div>
-          <div className="year-selector">
-            <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
-              {availableYears.map(year => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
+        <div className="card-header">
+          <div className="replay-header-content">
+            <span>{t.replayTitle}</span>
+            <div className="year-selector">
+              <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
+                {availableYears.map(year => (
+                  <option key={year} value={year}>{year}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
         <div className="replay-loading">
@@ -297,14 +299,16 @@ export default function GitHubReplay() {
 
   return (
     <section className="card github-replay">
-      <div className="replay-header-wrapper">
-        <div className="card-header">{t.replayTitle}</div>
-        <div className="year-selector">
-          <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
-            {availableYears.map(year => (
-              <option key={year} value={year}>{year}</option>
-            ))}
-          </select>
+      <div className="card-header">
+        <div className="replay-header-content">
+          <span>{t.replayTitle}</span>
+          <div className="year-selector">
+            <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
+              {availableYears.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 

@@ -3,42 +3,51 @@
   overflow: hidden;
 }
 
-.replay-header-wrapper {
+.replay-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
-/* Override card-header margin for this component */
-.github-replay .card-header {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-  flex: 1;
+.github-replay .year-selector {
+  margin-left: auto;
 }
 
 .github-replay .year-selector select {
-  background: rgba(42, 71, 94, 0.6);
-  border: 1px solid rgba(102, 192, 244, 0.4);
-  border-radius: 4px;
+  background: rgba(27, 40, 56, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
   padding: 6px 12px;
-  color: #c7d5e0;
-  font-size: 13px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Motiva Sans", sans-serif;
 }
 
 .github-replay .year-selector select:hover {
-  border-color: #66c0f4;
-  background: rgba(42, 71, 94, 0.8);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(26, 159, 255, 0.2);
 }
 
 .github-replay .year-selector select:focus {
   outline: none;
-  border-color: #66c0f4;
+  border-color: var(--accent-blue);
   box-shadow: 0 0 8px rgba(102, 192, 244, 0.4);
+}
+
+/* Cosmic Theme */
+body.CosmicTheme .github-replay .year-selector select {
+  border-color: var(--btn-outline, rgba(140, 90, 142));
+}
+
+body.CosmicTheme .github-replay .year-selector select:hover {
+  border-color: var(--btn-outline, rgba(140, 90, 142));
+  box-shadow: 0 2px 8px rgba(248, 70, 180, 0.2);
 }
 
 /* Loading & Error States */
@@ -716,7 +725,28 @@
   }
 
   .github-replay .year-selector select {
-    font-size: 12px;
+    font-size: 11px;
     padding: 5px 10px;
+  }
+
+  .replay-header-content {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .replay-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .github-replay .year-selector {
+    width: 100%;
+  }
+
+  .github-replay .year-selector select {
+    width: 100%;
   }
 }
