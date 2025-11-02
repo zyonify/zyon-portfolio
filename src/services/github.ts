@@ -6,6 +6,7 @@ import {
   ProcessedProject,
   ProcessedStats,
   ProcessedActivity,
+  GitHubReplayStats,
 } from '../types'
 import { getCache, setCache } from '../utils/cache'
 import { portfolioConfig } from '../config/portfolio.config'
@@ -400,6 +401,221 @@ export async function getFeaturedProject(
     }
   } catch (error) {
     console.error('Error fetching featured project:', error)
+    return null
+  }
+}
+
+/**
+ * Get GitHub Replay stats for a specific year
+ */
+export async function getReplayStats(
+  username: string = portfolioConfig.social.github,
+  year: number = new Date().getFullYear()
+): Promise<GitHubReplayStats | null> {
+  const cacheKey = `replay_${username}_${year}`
+  const cached = getCache<GitHubReplayStats>(cacheKey)
+
+  if (cached) {
+    return cached
+  }
+
+  try {
+    const repos = await fetchUserRepos(username)
+    const events = await fetchUserEvents(username, 1, 100)
+    const user = await fetchUserProfile(username)
+
+    // Filter events for the specified year
+    const yearEvents = events.filter(event => {
+      const eventYear = new Date(event.created_at).getFullYear()
+      return eventYear === year
+    })
+
+    // Calculate commit stats
+    const pushEvents = yearEvents.filter(e => e.type === 'PushEvent')
+    const totalCommits = pushEvents.reduce((sum, e) => sum + (e.payload.commits?.length || 1), 0)
+
+    // Calculate monthly activity
+    const monthlyCommits = new Array(12).fill(0)
+    pushEvents.forEach(event => {
+      const month = new Date(event.created_at).getMonth()
+      monthlyCommits[month] += event.payload.commits?.length || 1
+    })
+    const mostActiveMonthIndex = monthlyCommits.indexOf(Math.max(...monthlyCommits))
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    const mostActiveMonth = monthNames[mostActiveMonthIndex]
+
+    // Calculate daily activity for heatmap and streak
+    const dailyActivity = new Map<string, number>()
+    pushEvents.forEach(event => {
+      const date = new Date(event.created_at).toISOString().split('T')[0]
+      dailyActivity.set(date, (dailyActivity.get(date) || 0) + (event.payload.commits?.length || 1))
+    })
+
+    const daysCoded = dailyActivity.size
+
+    // Calculate longest streak
+    const sortedDates = Array.from(dailyActivity.keys()).sort()
+    let longestStreak = 0
+    let currentStreak = 0
+    for (let i = 0; i < sortedDates.length; i++) {
+      if (i === 0) {
+        currentStreak = 1
+      } else {
+        const prevDate = new Date(sortedDates[i - 1])
+        const currDate = new Date(sortedDates[i])
+        const diffDays = Math.floor((currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24))
+        if (diffDays === 1) {
+          currentStreak++
+        } else {
+          longestStreak = Math.max(longestStreak, currentStreak)
+          currentStreak = 1
+        }
+      }
+    }
+    longestStreak = Math.max(longestStreak, currentStreak)
+
+    // Language breakdown
+    const languageTotals: { [key: string]: number } = {}
+    let totalLanguageBytes = 0
+
+    for (const repo of repos) {
+      if (!repo.fork) {
+        const languages = await fetchRepoLanguages(username, repo.name)
+        Object.entries(languages).forEach(([lang, bytes]) => {
+          languageTotals[lang] = (languageTotals[lang] || 0) + bytes
+          totalLanguageBytes += bytes
+        })
+      }
+    }
+
+    const languageBreakdown = Object.entries(languageTotals)
+      .map(([name, bytes]) => ({
+        name,
+        percentage: Math.round((bytes / totalLanguageBytes) * 100),
+        color: LANGUAGE_COLORS[name] || '#6e7681',
+      }))
+      .sort((a, b) => b.percentage - a.percentage)
+      .slice(0, 5)
+
+    const topLanguage = languageBreakdown[0] || { name: 'Unknown', percentage: 0, color: '#6e7681' }
+
+    // Repos created in the year
+    const reposCreatedThisYear = repos.filter(repo => {
+      const repoYear = new Date(repo.created_at).getFullYear()
+      return repoYear === year
+    })
+    const reposCreated = reposCreatedThisYear.length
+
+    // Stars and forks gained (approximation based on current values)
+    const starsEarned = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0)
+    const forksGained = repos.reduce((sum, repo) => sum + repo.forks_count, 0)
+
+    // Top starred repo
+    const sortedByStars = [...repos].sort((a, b) => b.stargazers_count - a.stargazers_count)
+    const topStarredRepo = {
+      name: sortedByStars[0]?.name || 'N/A',
+      stars: sortedByStars[0]?.stargazers_count || 0,
+    }
+
+    // Day of week and hour analysis
+    const dayOfWeekCommits = new Array(7).fill(0)
+    const hourlyCommits = new Array(24).fill(0)
+    let lateNightCommits = 0
+    let weekendCommits = 0
+
+    pushEvents.forEach(event => {
+      const date = new Date(event.created_at)
+      const dayOfWeek = date.getDay()
+      const hour = date.getHours()
+      const commits = event.payload.commits?.length || 1
+
+      dayOfWeekCommits[dayOfWeek] += commits
+      hourlyCommits[hour] += commits
+
+      if (hour >= 0 && hour < 6) {
+        lateNightCommits += commits
+      }
+
+      if (dayOfWeek === 0 || dayOfWeek === 6) {
+        weekendCommits += commits
+      }
+    })
+
+    const mostProductiveDayIndex = dayOfWeekCommits.indexOf(Math.max(...dayOfWeekCommits))
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    const mostProductiveDay = dayNames[mostProductiveDayIndex]
+
+    const peakCodingHour = hourlyCommits.indexOf(Math.max(...hourlyCommits))
+
+    // PR and issue stats
+    const prEvents = yearEvents.filter(e => e.type === 'PullRequestEvent')
+    const pullRequestsCreated = prEvents.filter(e => e.payload.action === 'opened').length
+    const pullRequestsMerged = prEvents.filter(e => e.payload.action === 'closed' && e.payload.pull_request?.merged).length
+
+    const issueEvents = yearEvents.filter(e => e.type === 'IssuesEvent')
+    const issuesClosed = issueEvents.filter(e => e.payload.action === 'closed').length
+
+    // Top collaborated repo (most PR/Issue events)
+    const repoActivityCount: { [key: string]: number } = {}
+    yearEvents.forEach(event => {
+      if (event.type === 'PullRequestEvent' || event.type === 'IssuesEvent') {
+        const repoName = event.repo.name.split('/')[1]
+        repoActivityCount[repoName] = (repoActivityCount[repoName] || 0) + 1
+      }
+    })
+    const topCollaboratedRepo = Object.entries(repoActivityCount)
+      .sort((a, b) => b[1] - a[1])[0]?.[0] || 'N/A'
+
+    // Generate contribution heatmap (52 weeks x 7 days)
+    const contributionDays: number[][] = []
+    const startOfYear = new Date(year, 0, 1)
+    const endOfYear = new Date(year, 11, 31)
+
+    for (let week = 0; week < 53; week++) {
+      const weekData: number[] = []
+      for (let day = 0; day < 7; day++) {
+        const currentDate = new Date(startOfYear)
+        currentDate.setDate(startOfYear.getDate() + (week * 7) + day)
+
+        if (currentDate > endOfYear) {
+          weekData.push(0)
+        } else {
+          const dateStr = currentDate.toISOString().split('T')[0]
+          weekData.push(dailyActivity.get(dateStr) || 0)
+        }
+      }
+      contributionDays.push(weekData)
+    }
+
+    const replayStats: GitHubReplayStats = {
+      year,
+      totalCommits,
+      mostActiveMonth,
+      longestStreak,
+      daysCoded,
+      topLanguage,
+      languageBreakdown,
+      starsEarned,
+      forksGained,
+      topStarredRepo,
+      reposCreated,
+      mostProductiveDay,
+      peakCodingHour,
+      lateNightCommits,
+      weekendCommits,
+      pullRequestsCreated,
+      pullRequestsMerged,
+      issuesClosed,
+      topCollaboratedRepo,
+      followerGrowth: user?.followers || 0,
+      repoGrowth: repos.length,
+      contributionDays,
+    }
+
+    setCache(cacheKey, replayStats, CACHE_TTL)
+    return replayStats
+  } catch (error) {
+    console.error('Error fetching replay stats:', error)
     return null
   }
 }

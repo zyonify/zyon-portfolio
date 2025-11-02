@@ -181,3 +181,40 @@ export interface CachedData<T> {
   timestamp: number
   expiresAt: number
 }
+
+// GitHub Replay Types
+export interface GitHubReplayStats {
+  year: number
+  totalCommits: number
+  mostActiveMonth: string
+  longestStreak: number
+  daysCoded: number
+  topLanguage: {
+    name: string
+    percentage: number
+    color: string
+  }
+  languageBreakdown: Array<{
+    name: string
+    percentage: number
+    color: string
+  }>
+  starsEarned: number
+  forksGained: number
+  topStarredRepo: {
+    name: string
+    stars: number
+  }
+  reposCreated: number
+  mostProductiveDay: string
+  peakCodingHour: number
+  lateNightCommits: number
+  weekendCommits: number
+  pullRequestsCreated: number
+  pullRequestsMerged: number
+  issuesClosed: number
+  topCollaboratedRepo: string
+  followerGrowth: number
+  repoGrowth: number
+  contributionDays: number[][]
+}
