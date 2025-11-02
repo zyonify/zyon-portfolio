@@ -1,70 +1,61 @@
 .github-replay {
-  background: linear-gradient(135deg, rgba(42, 71, 94, 0.4) 0%, rgba(27, 40, 56, 0.6) 100%);
-  border: 1px solid var(--border-color, rgba(102, 192, 244, 0.3));
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
 
-.replay-header {
+.replay-header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(102, 192, 244, 0.2);
+  margin-bottom: 20px;
 }
 
-.replay-header h2 {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #66c0f4, #4a9fd8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Override card-header margin for this component */
+.github-replay .card-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+  flex: 1;
 }
 
-.year-selector select {
+.github-replay .year-selector select {
   background: rgba(42, 71, 94, 0.6);
   border: 1px solid rgba(102, 192, 244, 0.4);
   border-radius: 4px;
-  padding: 8px 16px;
+  padding: 6px 12px;
   color: #c7d5e0;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: "Motiva Sans", sans-serif;
 }
 
-.year-selector select:hover {
+.github-replay .year-selector select:hover {
   border-color: #66c0f4;
   background: rgba(42, 71, 94, 0.8);
 }
 
-.year-selector select:focus {
+.github-replay .year-selector select:focus {
   outline: none;
   border-color: #66c0f4;
   box-shadow: 0 0 8px rgba(102, 192, 244, 0.4);
 }
 
 /* Loading & Error States */
-.replay-loading,
-.replay-error {
+.github-replay .replay-loading,
+.github-replay .replay-error {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 20px;
-  min-height: 400px;
+  padding: 40px 20px;
+  min-height: 300px;
 }
 
-.loading-spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid rgba(102, 192, 244, 0.2);
+.github-replay .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(102, 192, 244, 0.2);
   border-top-color: #66c0f4;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -74,84 +65,84 @@
   to { transform: rotate(360deg); }
 }
 
-.replay-loading p,
-.replay-error p {
+.github-replay .replay-loading p,
+.github-replay .replay-error p {
   margin-top: 16px;
   color: #c7d5e0;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Carousel */
-.replay-carousel {
+.github-replay .replay-carousel {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 500px;
-  padding: 0 60px;
+  min-height: 450px;
+  padding: 0 50px;
 }
 
-.carousel-nav {
+.github-replay .carousel-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(42, 71, 94, 0.8);
   border: 1px solid rgba(102, 192, 244, 0.4);
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #66c0f4;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
 }
 
-.carousel-nav:hover:not(:disabled) {
+.github-replay .carousel-nav:hover:not(:disabled) {
   background: rgba(102, 192, 244, 0.2);
   border-color: #66c0f4;
   transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-nav:disabled {
+.github-replay .carousel-nav:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
 
-.carousel-nav.prev {
-  left: 10px;
+.github-replay .carousel-nav.prev {
+  left: 5px;
 }
 
-.carousel-nav.next {
-  right: 10px;
+.github-replay .carousel-nav.next {
+  right: 5px;
 }
 
-.carousel-content {
+.github-replay .carousel-content {
   flex: 1;
-  padding: 20px;
+  padding: 15px;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.carousel-content.animating {
+.github-replay .carousel-content.animating {
   opacity: 0.7;
   transform: scale(0.98);
 }
 
 /* Carousel Dots */
-.carousel-dots {
+.github-replay .carousel-dots {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 24px;
-  padding-top: 16px;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
   border-top: 1px solid rgba(102, 192, 244, 0.2);
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
+.github-replay .dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(102, 192, 244, 0.3);
   border: none;
@@ -159,74 +150,79 @@
   transition: all 0.3s ease;
 }
 
-.dot:hover {
+.github-replay .dot:hover {
   background: rgba(102, 192, 244, 0.6);
   transform: scale(1.2);
 }
 
-.dot.active {
+.github-replay .dot.active {
   background: #66c0f4;
   transform: scale(1.3);
-  box-shadow: 0 0 10px rgba(102, 192, 244, 0.6);
+  box-shadow: 0 0 8px rgba(102, 192, 244, 0.6);
 }
 
 /* Slide Styles */
-.slide {
+.github-replay .slide {
   text-align: center;
 }
 
-.slide-emoji {
-  font-size: 64px;
-  margin-bottom: 20px;
+.github-replay .slide-emoji {
+  font-size: 52px;
+  margin-bottom: 15px;
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
-.slide h3 {
-  font-size: 28px;
-  font-weight: 600;
+.github-replay .slide h3 {
+  font-size: 20px;
+  font-weight: 500;
   color: #c7d5e0;
-  margin: 0 0 32px 0;
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Motiva Sans", sans-serif;
 }
 
 /* Slide 1: Overview */
 .github-replay .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 20px;
-  margin-top: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .github-replay .stat-card {
-  background: rgba(42, 71, 94, 0.4);
+  background: rgba(42, 71, 94, 0.3);
   border: 1px solid rgba(102, 192, 244, 0.3);
-  border-radius: 8px;
-  padding: 24px 16px;
+  border-radius: 4px;
+  padding: 20px 12px;
   transition: all 0.3s ease;
 }
 
 .github-replay .stat-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: #66c0f4;
-  box-shadow: 0 4px 16px rgba(102, 192, 244, 0.2);
+  box-shadow: 0 4px 12px rgba(102, 192, 244, 0.2);
 }
 
 .github-replay .stat-value {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: bold;
   color: #66c0f4;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  font-family: 'Courier New', monospace;
 }
 
 .github-replay .stat-label {
-  font-size: 14px;
+  font-size: 12px;
   color: #8b98a5;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: "Motiva Sans", sans-serif;
 }
 
 /* Slide 2: Language */
@@ -671,53 +667,56 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .github-replay {
-    padding: 16px;
+  .github-replay .replay-carousel {
+    padding: 0 45px;
+    min-height: 500px;
   }
 
-  .replay-carousel {
-    padding: 0 50px;
-    min-height: 600px;
-  }
-
-  .carousel-nav {
-    width: 36px;
-    height: 36px;
+  .github-replay .carousel-nav {
+    width: 32px;
+    height: 32px;
     font-size: 14px;
   }
 
-  .stats-grid {
+  .github-replay .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
-  .impact-grid,
-  .productivity-row,
-  .growth-stats {
+  .github-replay .impact-grid,
+  .github-replay .productivity-row,
+  .github-replay .growth-stats {
     grid-template-columns: 1fr;
   }
 
-  .collab-row {
+  .github-replay .collab-row {
     grid-template-columns: 1fr;
   }
 
-  .language-circle {
-    width: 140px;
-    height: 140px;
+  .github-replay .language-circle {
+    width: 120px;
+    height: 120px;
   }
 
-  .language-percentage {
-    font-size: 36px;
+  .github-replay .language-percentage {
+    font-size: 32px;
   }
 
-  .impact-number {
-    font-size: 56px;
-  }
-
-  .slide-emoji {
+  .github-replay .impact-number {
     font-size: 48px;
   }
 
-  .slide h3 {
-    font-size: 22px;
+  .github-replay .slide-emoji {
+    font-size: 40px;
+  }
+
+  .github-replay .slide h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .github-replay .year-selector select {
+    font-size: 12px;
+    padding: 5px 10px;
   }
 }

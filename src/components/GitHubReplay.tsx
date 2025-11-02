@@ -49,9 +49,9 @@ export default function GitHubReplay() {
 
   if (loading) {
     return (
-      <div className="github-replay">
-        <div className="replay-header">
-          <h2>{t.replayTitle}</h2>
+      <section className="card github-replay">
+        <div className="replay-header-wrapper">
+          <div className="card-header">{t.replayTitle}</div>
           <div className="year-selector">
             <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
               {availableYears.map(year => (
@@ -64,20 +64,18 @@ export default function GitHubReplay() {
           <div className="loading-spinner"></div>
           <p>{t.replayLoading}</p>
         </div>
-      </div>
+      </section>
     )
   }
 
   if (!stats) {
     return (
-      <div className="github-replay">
-        <div className="replay-header">
-          <h2>{t.replayTitle}</h2>
-        </div>
+      <section className="card github-replay">
+        <div className="card-header">{t.replayTitle}</div>
         <div className="replay-error">
           <p>{t.replayError}</p>
         </div>
-      </div>
+      </section>
     )
   }
 
@@ -298,9 +296,9 @@ export default function GitHubReplay() {
   }
 
   return (
-    <div className="github-replay">
-      <div className="replay-header">
-        <h2>{t.replayTitle}</h2>
+    <section className="card github-replay">
+      <div className="replay-header-wrapper">
+        <div className="card-header">{t.replayTitle}</div>
         <div className="year-selector">
           <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
             {availableYears.map(year => (
@@ -344,6 +342,6 @@ export default function GitHubReplay() {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
