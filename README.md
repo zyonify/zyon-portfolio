@@ -9,6 +9,29 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ## 🆕 Recent Updates
 
+### November 3, 2025
+- **📊 GitHub Replay**: Year-in-code visualization inspired by Spotify Wrapped and Steam Rewind
+  - 6-slide interactive carousel showcasing annual GitHub statistics
+  - Slide 1: Year Overview (commits, active month, longest streak, days coded)
+  - Slide 2: Language Mastery (top language with percentage breakdown and visual bars)
+  - Slide 3: Impact Metrics (stars earned, forks gained, repos created, top starred repo)
+  - Slide 4: Productivity Patterns (most productive day, peak coding hour, night owl/weekend warrior badges)
+  - Slide 5: Collaboration Stats (PRs created/merged, issues closed, top collaborated repo)
+  - Slide 6: Growth Story (follower/repo growth, contribution heatmap)
+  - Year selector to view stats from current year or previous years
+  - Smooth 150ms slide transitions with visual feedback
+  - Steam-inspired styling with gradient backgrounds and hover effects
+- **🔧 Component Architecture Refactor**: Split Showcases into independent components
+  - Separated into FeaturedProjects, AchievementsShowcase, TechnicalSkills, and PersonalHobbies
+  - Enables flexible section ordering for optimal portfolio flow
+  - Current order: Profile → Projects → GitHub Replay → Achievements → Skills → Resume → Hobbies
+  - Each component maintains its own tracking and achievement functionality
+- **🎨 Layout & Styling Improvements**:
+  - Fixed section highlight glow to display on all 4 sides (top, right, bottom, left)
+  - Resolved width constraint issues with contribution heatmap
+  - Optimized carousel dimensions to prevent layout shifts
+  - Consistent icon sizing across achievements and hobbies (60px × 60px)
+
 ### October 14, 2025
 - **🐛 Achievement System Fixes**: Fixed duplicate achievement triggering
   - Added race condition guard to prevent concurrent achievement unlocks
@@ -134,6 +157,12 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 
 ### 📊 Dynamic Content & Visualizations
 - **GitHub Integration**: Automatically fetches repos, stats, and profile data
+- **GitHub Replay**: Year-in-code carousel with 6 interactive slides
+  - Annual statistics visualization inspired by Spotify Wrapped
+  - Showcase commits, languages, impact, productivity, collaboration, and growth
+  - Year selector for viewing historical data
+  - Contribution heatmap with intensity-based coloring
+  - Smooth carousel transitions with navigation dots
 - **Animated Counters**: Stats count up when scrolling into view with smooth easing
 - **Contribution Heatmap**: GitHub-style activity visualization
   - Last 12 weeks of activity
@@ -153,18 +182,19 @@ A stunning, interactive portfolio website inspired by Steam's profile design, bu
 ### 🎯 Key Sections
 1. **Header Navigation**: Two-tier Steam-style header with language selector, info button, and achievements
 2. **Profile Overview**: Name, title, location with Steam profile frame
-3. **Developer Level**: XP-based level system with progress ring, 5 stat badges (GitHub + Achievements), and work status
-4. **Visitor Achievements**: Interactive achievement system with toast notifications, modal, and XP rewards
-5. **Resume Viewer**: Embedded PDF with expand/collapse and download
-6. **Featured Projects**: GitHub repos with stars, forks, and tech stacks
-7. **Achievement Showcase**: Rarity-based certifications and career milestones
+3. **Featured Projects**: GitHub repos with stars, forks, tech stacks, and live demos
+4. **GitHub Replay**: Year-in-code visualization with 6 interactive slides and year selector
+5. **Achievement Showcase**: Rarity-based certifications and career milestones
+6. **Technical Skills**: Categorized skills with Steam-style interactive tags
+7. **Resume Viewer**: Embedded PDF with expand/collapse and download
 8. **Personal Hobbies**: Interactive hobby cards with engagement tracking
-9. **Technical Skills**: Categorized skills with hover animations
+9. **Developer Level**: XP-based level system with progress ring, 5 stat badges (GitHub + Achievements), and work status
 10. **GitHub Stats**: Animated counters, language donut chart, and completion rate
 11. **Activity Feed**: Contribution heatmap and recent GitHub activity timeline
 12. **Social Links**: GitHub, LinkedIn, Email contact info
-13. **Steam Notifications**: Satirical friend notifications appearing periodically
-14. **Info Modal**: Behind-the-scenes details about portfolio mechanics, XP system, and features
+13. **Visitor Achievements**: Interactive achievement system with toast notifications, modal, and XP rewards
+14. **Steam Notifications**: Satirical friend notifications appearing periodically
+15. **Info Modal**: Behind-the-scenes details about portfolio mechanics, XP system, and features
 
 ## 🛠️ Tech Stack
 

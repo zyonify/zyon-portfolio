@@ -30,21 +30,21 @@ export default function GitHubReplay() {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentSlide((prev) => (prev + 1) % 6)
-    setTimeout(() => setIsAnimating(false), 500)
+    setTimeout(() => setIsAnimating(false), 150)
   }
 
   const prevSlide = () => {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentSlide((prev) => (prev - 1 + 6) % 6)
-    setTimeout(() => setIsAnimating(false), 500)
+    setTimeout(() => setIsAnimating(false), 150)
   }
 
   const goToSlide = (index: number) => {
     if (isAnimating) return
     setIsAnimating(true)
     setCurrentSlide(index)
-    setTimeout(() => setIsAnimating(false), 500)
+    setTimeout(() => setIsAnimating(false), 150)
   }
 
   if (loading) {
@@ -268,23 +268,25 @@ export default function GitHubReplay() {
             <div className="growth-heatmap">
               <p className="heatmap-title">{t.replayGrowthContributionGraph}</p>
               <div className="heatmap-grid">
-                {stats.contributionDays.slice(0, 52).map((week, weekIndex) => (
-                  <div key={weekIndex} className="heatmap-week">
-                    {week.map((day, dayIndex) => {
-                      const intensity = day === 0 ? 0 :
-                                       day <= 2 ? 1 :
-                                       day <= 5 ? 2 :
-                                       day <= 10 ? 3 : 4
-                      return (
-                        <div
-                          key={dayIndex}
-                          className={`heatmap-day intensity-${intensity}`}
-                          title={`${day} contributions`}
-                        />
-                      )
-                    })}
-                  </div>
-                ))}
+                <div className="heatmap-container">
+                  {stats.contributionDays.slice(0, 52).map((week, weekIndex) => (
+                    <div key={weekIndex} className="heatmap-week">
+                      {week.map((day, dayIndex) => {
+                        const intensity = day === 0 ? 0 :
+                                         day <= 2 ? 1 :
+                                         day <= 5 ? 2 :
+                                         day <= 10 ? 3 : 4
+                        return (
+                          <div
+                            key={dayIndex}
+                            className={`heatmap-day intensity-${intensity}`}
+                            title={`${day} contributions`}
+                          />
+                        )
+                      })}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="replay-footer">
