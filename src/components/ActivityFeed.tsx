@@ -127,7 +127,7 @@ function ActivityFeed() {
               </div>
               <div className="heatmap-content">
                 <div className="heatmap-months">
-                  {heatmapData.map((week, weekIndex) => {
+                  {heatmapData.map((_, weekIndex) => {
                     const dateOffset = (weeks * 7) - (weekIndex * 7)
                     const date = new Date()
                     date.setDate(date.getDate() - dateOffset)
