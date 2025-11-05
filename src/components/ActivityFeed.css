@@ -121,8 +121,10 @@
   display: flex;
   gap: 3px;
   margin-bottom: 8px;
-  min-height: 90px;
-  overflow: visible;
+  min-height: 105px;
+  height: auto;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .heatmap-labels {
@@ -130,6 +132,8 @@
   grid-template-rows: repeat(7, 10px);
   gap: 3px;
   padding-right: 6px;
+  margin-top: 16px;
+  flex-shrink: 0;
 }
 
 .heatmap-day-label {
@@ -142,19 +146,45 @@
   font-weight: 500;
 }
 
+.heatmap-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.heatmap-months {
+  display: flex;
+  gap: 3px;
+  padding-left: 0;
+}
+
+.heatmap-month-label {
+  flex-shrink: 0;
+  width: 13px;
+  font-size: 9px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-align: left;
+  height: 12px;
+  display: flex;
+  align-items: center;
+}
+
 .heatmap-weeks {
   display: flex;
   gap: 3px;
   flex: 1;
-  overflow-x: auto;
-  overflow-y: visible;
   min-height: 90px;
+  width: 100%;
 }
 
 .heatmap-week {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  flex-shrink: 0;
 }
 
 .heatmap-day {
@@ -268,15 +298,51 @@ body.CosmicTheme .legend-box.intensity-4 {
   box-shadow: 0 0 4px rgba(248, 70, 180, 0.4);
 }
 
+/* Mobile: Add vertical overflow */
+@media (max-width: 768px) {
+  .heatmap-grid {
+    min-height: auto;
+    height: auto;
+    max-height: 140px;
+    overflow: hidden;
+  }
+
+  .heatmap-content {
+    max-height: 120px;
+    overflow: hidden;
+  }
+
+  .heatmap-weeks {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 90px;
+    min-height: auto;
+  }
+
+  .heatmap-labels {
+    margin-top: 12px;
+  }
+
+  .contribution-heatmap {
+    overflow: hidden;
+  }
+}
+
 /* Desktop: Ensure full heatmap visibility */
 @media (min-width: 769px) {
   .heatmap-grid {
+    min-height: 115px;
+    overflow: visible;
+  }
+
+  .heatmap-content {
     min-height: 100px;
   }
 
   .heatmap-weeks {
-    min-height: 100px;
+    min-height: 90px;
     padding-bottom: 5px;
+    overflow: visible;
   }
 
   .heatmap-week {

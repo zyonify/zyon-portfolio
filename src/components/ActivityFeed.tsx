@@ -125,27 +125,48 @@ function ActivityFeed() {
                   </div>
                 ))}
               </div>
-              <div className="heatmap-weeks">
-                {heatmapData.map((week, weekIndex) => (
-                  <div key={weekIndex} className="heatmap-week">
-                    {week.map((count, dayIndex) => {
-                      const intensity = count === 0 ? 0 : Math.ceil((count / maxActivity) * 4)
-                      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-                      const dateOffset = (weeks * 7) - (weekIndex * 7) - dayIndex
-                      const date = new Date()
-                      date.setDate(date.getDate() - dateOffset)
-                      const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              <div className="heatmap-content">
+                <div className="heatmap-months">
+                  {heatmapData.map((week, weekIndex) => {
+                    const dateOffset = (weeks * 7) - (weekIndex * 7)
+                    const date = new Date()
+                    date.setDate(date.getDate() - dateOffset)
+                    const monthName = date.toLocaleDateString('en-US', { month: 'short' })
 
-                      return (
-                        <div
-                          key={`${weekIndex}-${dayIndex}`}
-                          className={`heatmap-day intensity-${intensity}`}
-                          title={`${count} contribution${count !== 1 ? 's' : ''} on ${dayNames[dayIndex]}, ${dateStr}`}
-                        />
-                      )
-                    })}
-                  </div>
-                ))}
+                    // Only show month label at the first week of each month
+                    const prevWeekDate = new Date()
+                    prevWeekDate.setDate(prevWeekDate.getDate() - dateOffset - 7)
+                    const showMonth = weekIndex === 0 || date.getMonth() !== prevWeekDate.getMonth()
+
+                    return (
+                      <div key={`month-${weekIndex}`} className="heatmap-month-label">
+                        {showMonth ? monthName : ''}
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="heatmap-weeks">
+                  {heatmapData.map((week, weekIndex) => (
+                    <div key={weekIndex} className="heatmap-week">
+                      {week.map((count, dayIndex) => {
+                        const intensity = count === 0 ? 0 : Math.ceil((count / maxActivity) * 4)
+                        const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+                        const dateOffset = (weeks * 7) - (weekIndex * 7) - dayIndex
+                        const date = new Date()
+                        date.setDate(date.getDate() - dateOffset)
+                        const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
+                        return (
+                          <div
+                            key={`${weekIndex}-${dayIndex}`}
+                            className={`heatmap-day intensity-${intensity}`}
+                            title={`${count} contribution${count !== 1 ? 's' : ''} on ${dayNames[dayIndex]}, ${dateStr}`}
+                          />
+                        )
+                      })}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
